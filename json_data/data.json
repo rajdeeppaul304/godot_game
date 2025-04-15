@@ -1,0 +1,18 @@
+{
+	"sprite_sheet": "res://assets/Enemies/Warthog-sheet.png",
+	"hframes": 12,
+	"vframes": 4,
+	"animations": {
+	  "attack": {
+		"frames": [
+		  { "x": 0, "y": 0 },
+		  { "x": 1, "y": 0 },
+		  { "x": 2, "y": 0 },
+		  { "x": 3, "y": 0 },
+		  { "x": 0, "y": 1 }
+		],
+		"step": 0.1
+	  }
+	}
+  }
+  

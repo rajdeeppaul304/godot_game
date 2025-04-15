@@ -1,0 +1,72 @@
+[gd_scene load_steps=8 format=3 uid="uid://b21xsfx3sncvg"]
+
+[ext_resource type="PackedScene" uid="uid://bkvifke0t0v3q" path="res://scenes/enemy.tscn" id="1_bv8sf"]
+[ext_resource type="Texture2D" uid="uid://bwa7rbkh5uc7q" path="res://assets/Enemies/final_sprites/t_rex.png" id="2_5iep4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5iep4"]
+radius = 80.7527
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5iep4"]
+radius = 16.4589
+height = 32.932
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1ejsu"]
+radius = 33.0151
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_o3wfb"]
+radius = 32.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qetj3"]
+radius = 15.1327
+
+[node name="Enemy" instance=ExtResource("1_bv8sf")]
+metadata/_edit_vertical_guides_ = [-119.0]
+
+[node name="Sprite2D" parent="." index="1"]
+visible = true
+texture = ExtResource("2_5iep4")
+
+[node name="CollisionShape2D" parent="DetectionArea" index="0"]
+shape = SubResource("CircleShape2D_5iep4")
+
+[node name="CollisionShape2D" parent="." index="3"]
+position = Vector2(-1, -1.90735e-06)
+rotation = 1.55879
+scale = Vector2(1.70108, 1.70108)
+shape = SubResource("CapsuleShape2D_5iep4")
+
+[node name="MyHurtBox" parent="." index="5"]
+position = Vector2(-1, 1)
+
+[node name="CollisionShape2D" parent="MyHurtBox" index="0"]
+position = Vector2(0, -1)
+shape = SubResource("CircleShape2D_1ejsu")
+
+[node name="Enemy_hitbox" parent="." index="6"]
+position = Vector2(-1, 0)
+
+[node name="CollisionShape2D" parent="Enemy_hitbox" index="0"]
+position = Vector2(0, 0)
+shape = SubResource("CircleShape2D_o3wfb")
+
+[node name="CollisionShape2D" parent="projectile_detector" index="0"]
+scale = Vector2(2.01228, 2.01228)
+shape = SubResource("CircleShape2D_qetj3")
+
+[node name="big" parent="particles" index="0"]
+lifetime = 0.6
+initial_velocity_min = 40.0
+initial_velocity_max = 60.0
+
+[node name="medium" parent="particles" index="1"]
+lifetime = 0.6
+initial_velocity_min = 40.0
+initial_velocity_max = 60.0
+
+[node name="small" parent="particles" index="2"]
+lifetime = 0.6
+initial_velocity_min = 40.0
+initial_velocity_max = 60.0
+
+[node name="particles_on_timer" parent="particles" index="3"]
+wait_time = 0.8

@@ -1,0 +1,48 @@
+[gd_scene load_steps=7 format=3 uid="uid://by2tc8x4g2tqj"]
+
+[ext_resource type="Script" uid="uid://kjrhxmgggt1h" path="res://scripts/projectile.gd" id="1_q3m7n"]
+[ext_resource type="PackedScene" uid="uid://ew4lg3xh2mt2" path="res://scenes/after_image.tscn" id="2_6q2a6"]
+[ext_resource type="Texture2D" uid="uid://bhvi4yn6p7i6a" path="res://assets/projectile_2.png" id="2_softn"]
+[ext_resource type="Script" uid="uid://br1jh6762i354" path="res://scripts/MyHitBox.gd" id="3_softn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_softn"]
+radius = 8.00092
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6q2a6"]
+radius = 8.0
+
+[node name="Projectile" type="CharacterBody2D"]
+y_sort_enabled = true
+position = Vector2(0, 5)
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_q3m7n")
+afterimage_scene = ExtResource("2_6q2a6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 5
+position = Vector2(9, 0)
+scale = Vector2(1.181, 1)
+texture = ExtResource("2_softn")
+
+[node name="MyHitBox" type="Area2D" parent="."]
+visible = false
+position = Vector2(2, -5)
+script = ExtResource("3_softn")
+metadata/_custom_type_script = "uid://br1jh6762i354"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MyHitBox"]
+position = Vector2(9, 5)
+shape = SubResource("CircleShape2D_softn")
+
+[node name="Area2D" type="Area2D" parent="."]
+visible = false
+collision_layer = 0
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(11, 0)
+shape = SubResource("CircleShape2D_6q2a6")
+
+[connection signal="area_entered" from="MyHitBox" to="." method="_on_my_hit_box_area_entered"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

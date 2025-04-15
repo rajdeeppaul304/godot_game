@@ -1,0 +1,129 @@
+[gd_scene load_steps=18 format=3 uid="uid://bhobfykeucqej"]
+
+[ext_resource type="Texture2D" uid="uid://b4fl17v5m6exu" path="res://assets/PS4-sheet.png" id="1_6wx45"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_notdv"]
+atlas = ExtResource("1_6wx45")
+region = Rect2(5, 13, 7, 6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n26gd"]
+atlas = ExtResource("1_6wx45")
+region = Rect2(37, 13, 7, 6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c1tq5"]
+atlas = ExtResource("1_6wx45")
+region = Rect2(20, 13, 7, 6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6e4pk"]
+atlas = ExtResource("1_6wx45")
+region = Rect2(52, 13, 7, 6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pefoi"]
+atlas = ExtResource("1_6wx45")
+region = Rect2(13, 5, 6, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mc04f"]
+atlas = ExtResource("1_6wx45")
+region = Rect2(45, 5, 6, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i7au1"]
+atlas = ExtResource("1_6wx45")
+region = Rect2(13, 20, 6, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lkmae"]
+atlas = ExtResource("1_6wx45")
+region = Rect2(45, 20, 6, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6wx45"]
+atlas = ExtResource("1_6wx45")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j2vku"]
+atlas = ExtResource("1_6wx45")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4wk4v"]
+atlas = ExtResource("1_6wx45")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tve8x"]
+atlas = ExtResource("1_6wx45")
+region = Rect2(16, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j3oes"]
+atlas = ExtResource("1_6wx45")
+region = Rect2(0, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pvbyl"]
+atlas = ExtResource("1_6wx45")
+region = Rect2(16, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4wpbc"]
+atlas = ExtResource("1_6wx45")
+region = Rect2(0, 80, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s570s"]
+atlas = ExtResource("1_6wx45")
+region = Rect2(16, 80, 16, 16)
+
+[node name="touch_controls" type="CanvasLayer"]
+
+[node name="left" type="TouchScreenButton" parent="."]
+position = Vector2(102, 685)
+scale = Vector2(25, 25)
+texture_normal = SubResource("AtlasTexture_notdv")
+texture_pressed = SubResource("AtlasTexture_n26gd")
+passby_press = true
+action = "left"
+
+[node name="right" type="TouchScreenButton" parent="."]
+position = Vector2(327, 685)
+scale = Vector2(25, 25)
+texture_normal = SubResource("AtlasTexture_c1tq5")
+texture_pressed = SubResource("AtlasTexture_6e4pk")
+passby_press = true
+action = "right"
+
+[node name="up" type="TouchScreenButton" parent="."]
+position = Vector2(227, 560)
+scale = Vector2(25, 25)
+texture_normal = SubResource("AtlasTexture_pefoi")
+texture_pressed = SubResource("AtlasTexture_mc04f")
+passby_press = true
+action = "up"
+
+[node name="down" type="TouchScreenButton" parent="."]
+position = Vector2(227, 785)
+scale = Vector2(25, 25)
+texture_normal = SubResource("AtlasTexture_i7au1")
+texture_pressed = SubResource("AtlasTexture_lkmae")
+passby_press = true
+action = "down"
+
+[node name="attack" type="TouchScreenButton" parent="."]
+position = Vector2(1324, 720)
+scale = Vector2(10, 10)
+texture_normal = SubResource("AtlasTexture_6wx45")
+texture_pressed = SubResource("AtlasTexture_j2vku")
+action = "attack"
+
+[node name="ranged" type="TouchScreenButton" parent="."]
+position = Vector2(1644, 720)
+scale = Vector2(10, 10)
+texture_normal = SubResource("AtlasTexture_4wk4v")
+texture_pressed = SubResource("AtlasTexture_tve8x")
+action = "projectile_1"
+
+[node name="health" type="TouchScreenButton" parent="."]
+position = Vector2(1484, 560)
+scale = Vector2(10, 10)
+texture_normal = SubResource("AtlasTexture_j3oes")
+texture_pressed = SubResource("AtlasTexture_pvbyl")
+action = "health_potion"
+
+[node name="sprint" type="TouchScreenButton" parent="."]
+position = Vector2(1484, 880)
+scale = Vector2(10, 10)
+texture_normal = SubResource("AtlasTexture_4wpbc")
+texture_pressed = SubResource("AtlasTexture_s570s")
+action = "sprint"
