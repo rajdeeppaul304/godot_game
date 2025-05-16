@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://dp4ikgtgx1w8o"]
+
+[ext_resource type="Texture2D" uid="uid://bvpmsyi6gnkss" path="res://assets/characters/minigame_assets/broly_level/part_8.png" id="1_8krcv"]
+[ext_resource type="Script" uid="uid://xdwfd2bhpwu1" path="res://scripts/world_scripts/last_level/part_8.gd" id="1_iyw6n"]
+[ext_resource type="PackedScene" uid="uid://ct2rfy2e8m43c" path="res://scenes/player.tscn" id="2_iyw6n"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nhimw"]
+size = Vector2(35, 34)
+
+[node name="part_8" type="Node2D"]
+script = ExtResource("1_iyw6n")
+
+[node name="Part8" type="Sprite2D" parent="."]
+position = Vector2(240, 180)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("1_8krcv")
+
+[node name="Player" parent="." instance=ExtResource("2_iyw6n")]
+position = Vector2(430, 161)
+current_ball = "dragon_ball_7"
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(0, 1)
+zoom = Vector2(4, 4)
+limit_left = 0
+limit_top = 0
+limit_right = 480
+limit_bottom = 360
+limit_smoothed = true
+rotation_smoothing_enabled = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(36, 139, 36, 132, 72, 132, 72, 108, 154, 108, 154, 132, 189, 132, 189, 108, 408, 108, 408, 132, 444, 132, 444, 145, 477, 145, 477, 168, 444, 168, 444, 312, 36, 312, 36, 142, 9, 172, -12, 329, 289, 360, 531, 355, 528, 79, 251, 64, 22, 84, 29, 136, 35, 151)
+
+[node name="next_scene" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="next_scene"]
+position = Vector2(471.5, 157)
+shape = SubResource("RectangleShape2D_nhimw")
+
+[connection signal="body_entered" from="next_scene" to="." method="_on_next_scene_body_entered"]

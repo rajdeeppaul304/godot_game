@@ -1,21 +1,79 @@
-[gd_scene load_steps=4 format=3 uid="uid://cpys8x3bau4p7"]
+[gd_scene load_steps=9 format=3 uid="uid://cpys8x3bau4p7"]
 
 [ext_resource type="Script" uid="uid://dgfvsw5jiw23l" path="res://scripts/item.gd" id="1_s8enn"]
+[ext_resource type="Texture2D" uid="uid://b2j5et7848tlq" path="res://assets/characters/minigame_assets/dragon_balls/Shadow.png" id="2_6muww"]
 [ext_resource type="Texture2D" uid="uid://du1b1m4vr8rsy" path="res://assets/UI_Elements/health_potion.png" id="2_s8enn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s8enn"]
+radius = 9.0
+
+[sub_resource type="Animation" id="Animation_s8enn"]
+resource_name = "default"
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.55, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(-2, -2, -2, -2, -2, -2, -2),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -5), Vector2(0, 0), Vector2(0, -3), Vector2(0, 0), Vector2(0, -1), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_6muww"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vljjh"]
+_data = {
+&"RESET": SubResource("Animation_6muww"),
+&"default": SubResource("Animation_s8enn")
+}
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vljjh"]
 
-[node name="Item" type="Area2D"]
+[node name="Item" type="CharacterBody2D"]
 z_index = 1
-collision_layer = 64
-collision_mask = 64
+collision_layer = 0
 script = ExtResource("1_s8enn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_s8enn")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Sprite2D")
+libraries = {
+&"": SubResource("AnimationLibrary_vljjh")
+}
+autoplay = "default"
+
+[node name="Shadow" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 0.729)
+position = Vector2(0, 6)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_6muww")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_s8enn")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_vljjh")
 
-[connection signal="area_entered" from="." to="." method="_on_area_entered"]
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

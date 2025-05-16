@@ -1,0 +1,34 @@
+[gd_scene load_steps=3 format=3 uid="uid://xslnt22jiinw"]
+
+[ext_resource type="Script" uid="uid://bcy8cacfv11r0" path="res://scripts/minigames/sliding_game_board.gd" id="1_152a1"]
+[ext_resource type="PackedScene" uid="uid://dahk2eg7xd6ji" path="res://scenes/minigames/sliding_puzzle.tscn" id="2_qumt4"]
+
+[node name="sliding_game_board" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_152a1")
+tile_size = 16
+tile_scene = ExtResource("2_qumt4")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 88.0
+offset_bottom = 111.0
+grow_horizontal = 2
+
+[node name="timer_label" type="Label" parent="CanvasLayer/CenterContainer"]
+layout_mode = 2
+text = "asdfasdfasdf"
+
+[node name="Timer" type="Timer" parent="CanvasLayer/CenterContainer"]
+wait_time = 40.0
+one_shot = true
+
+[connection signal="timeout" from="CanvasLayer/CenterContainer/Timer" to="." method="_on_timer_timeout"]

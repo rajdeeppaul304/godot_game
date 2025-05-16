@@ -1,0 +1,62 @@
+[gd_scene load_steps=6 format=3 uid="uid://5gto0n3o3g0g"]
+
+[ext_resource type="Texture2D" uid="uid://ckbeqh2sc7rj6" path="res://assets/characters/minigame_assets/broly_level/part_9.png" id="1_1r72i"]
+[ext_resource type="Script" uid="uid://dnodt167jp72o" path="res://scripts/world_scripts/last_level/part_9.gd" id="1_rckx6"]
+[ext_resource type="PackedScene" uid="uid://ct2rfy2e8m43c" path="res://scenes/player.tscn" id="2_rckx6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rckx6"]
+size = Vector2(29, 46)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7t5fg"]
+size = Vector2(27, 45)
+
+[node name="part_9" type="Node2D"]
+script = ExtResource("1_rckx6")
+
+[node name="Part9" type="Sprite2D" parent="."]
+position = Vector2(300, 180)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("1_1r72i")
+
+[node name="Player" parent="." instance=ExtResource("2_rckx6")]
+position = Vector2(442, 279)
+current_ball = "dragon_ball_7"
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(0, 1)
+zoom = Vector2(4, 4)
+limit_left = 0
+limit_top = 0
+limit_right = 600
+limit_bottom = 360
+limit_smoothed = true
+rotation_smoothing_enabled = true
+
+[node name="SpawnPoints" type="Node" parent="."]
+
+[node name="spawnpoint1" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(56, 299)
+
+[node name="spawnpoint2" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(548, 301)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+visible = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(2, 287, 36, 287, 36, 109, 167, 109, 167, 132, 201, 132, 201, 109, 279, 109, 279, 132, 312, 132, 312, 109, 528, 109, 528, 132, 564, 132, 564, 291, 598, 291, 598, 312, 2, 312, 2, 290, -18, 289, -15, 362, 663, 362, 612, 80, 25, 60, -46, 194, -13, 398)
+
+[node name="next_scene" type="Area2D" parent="."]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="next_scene"]
+position = Vector2(589, 300)
+shape = SubResource("RectangleShape2D_rckx6")
+
+[node name="previous_scene" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="previous_scene"]
+position = Vector2(9.5, 302.5)
+shape = SubResource("RectangleShape2D_7t5fg")
+
+[connection signal="body_entered" from="next_scene" to="." method="_on_next_scene_body_entered"]
+[connection signal="body_entered" from="previous_scene" to="." method="_on_previous_scene_body_entered"]

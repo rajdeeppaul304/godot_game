@@ -1,0 +1,7 @@
+~ start
+King Kai: [[Hi|Hello|Howdy]], we have a serious problem!
+#King Kai: The universe is in grave danger... and only the Dragon Balls can save us.
+#King Kai: We need to find them all before it's too late.
+#King Kai: The first Dragon Ball is hidden at the end of a dangerous maze.
+#King Kai: You'll need to be careful — it's full of traps and tricks.
+do Manager.emit_signal("dialogue_has_ended") 

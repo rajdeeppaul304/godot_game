@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://bh7swmi3cnyjp"]
+
+[ext_resource type="Script" uid="uid://b4i6mf3678qie" path="res://scripts/minigames/memory_matching_game.gd" id="1_u2tfs"]
+[ext_resource type="Texture2D" uid="uid://dog772mcp2c2o" path="res://assets/characters/portraits/goku.png" id="2_hpp3i"]
+[ext_resource type="Texture2D" uid="uid://bhmv7d8dh62if" path="res://assets/characters/portraits/back.png" id="3_twufp"]
+[ext_resource type="Shader" uid="uid://bxh2cylwfv0i3" path="res://scenes/minigames/memory_matching_game.gdshader" id="4_gptxx"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u2tfs"]
+shader = ExtResource("4_gptxx")
+shader_parameter/flip_progress = 0.0
+shader_parameter/horizontal_flip = true
+
+[node name="MemoryMatchingGame" type="Node2D"]
+script = ExtResource("1_u2tfs")
+front_texture = ExtResource("2_hpp3i")
+back_texture = ExtResource("3_twufp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_u2tfs")
+position = Vector2(988, 536)
+scale = Vector2(5, 5)
+texture = ExtResource("3_twufp")
+
+[node name="Button" type="Button" parent="."]
+offset_left = 938.0
+offset_top = 132.0
+offset_right = 1010.0
+offset_bottom = 186.0
+text = "flip over"
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

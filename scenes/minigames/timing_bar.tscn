@@ -1,0 +1,105 @@
+[gd_scene load_steps=11 format=3 uid="uid://dslaaft84obbn"]
+
+[ext_resource type="Script" uid="uid://df0x3c4n0w0sm" path="res://scripts/minigames/timing_bar.gd" id="1_urp78"]
+[ext_resource type="Texture2D" uid="uid://bdhcumv574y1l" path="res://assets/characters/minigame_assets/backgroun_bar.png" id="2_8x5ei"]
+[ext_resource type="Texture2D" uid="uid://iohhkgxpgsq4" path="res://assets/characters/minigame_assets/inside_bg.png" id="3_l0p0m"]
+[ext_resource type="Texture2D" uid="uid://dxrdr7n463ao3" path="res://assets/characters/minigame_assets/marker_bar.png" id="4_55p1c"]
+[ext_resource type="Texture2D" uid="uid://mt5pj2byiovx" path="res://assets/characters/minigame_assets/good_bar.png" id="4_w57j5"]
+[ext_resource type="Texture2D" uid="uid://ch24txs8rbcmy" path="res://assets/characters/minigame_assets/perfect_bar.png" id="5_55p1c"]
+[ext_resource type="Texture2D" uid="uid://c00ke6g38cwhx" path="res://assets/characters/minigame_assets/marker_main.png" id="6_l0p0m"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eajx5"]
+size = Vector2(21, 34)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wok67"]
+size = Vector2(21, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7ydvd"]
+size = Vector2(43, 11)
+
+[node name="timing_bar" type="Node2D"]
+script = ExtResource("1_urp78")
+
+[node name="backgroun" type="TextureRect" parent="."]
+offset_right = 112.0
+offset_bottom = 212.0
+scale = Vector2(4, 4)
+texture = ExtResource("2_8x5ei")
+
+[node name="inside_bg" type="TextureRect" parent="backgroun"]
+layout_mode = 0
+offset_top = 16.0
+offset_right = 112.0
+offset_bottom = 196.0
+texture = ExtResource("3_l0p0m")
+
+[node name="marker2" type="TextureRect" parent="backgroun"]
+visible = false
+layout_mode = 0
+offset_right = 112.0
+offset_bottom = 212.0
+texture = ExtResource("4_55p1c")
+
+[node name="goodzone" type="TextureRect" parent="backgroun"]
+layout_mode = 0
+offset_right = 112.0
+offset_bottom = 212.0
+texture = ExtResource("4_w57j5")
+
+[node name="Area2D" type="Area2D" parent="backgroun/goodzone"]
+position = Vector2(-2, -9)
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="backgroun/goodzone/Area2D"]
+position = Vector2(57.5, 115)
+shape = SubResource("RectangleShape2D_eajx5")
+
+[node name="perfectzone" type="TextureRect" parent="backgroun"]
+layout_mode = 0
+offset_right = 112.0
+offset_bottom = 212.0
+texture = ExtResource("5_55p1c")
+
+[node name="Area2D" type="Area2D" parent="backgroun/perfectzone"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="backgroun/perfectzone/Area2D"]
+position = Vector2(55.5, 106)
+shape = SubResource("RectangleShape2D_wok67")
+debug_color = Color(0.993134, 0.00258929, 0.237285, 0.42)
+
+[node name="marker" type="TextureRect" parent="backgroun"]
+custom_minimum_size = Vector2(47, 33)
+layout_mode = 0
+offset_left = 32.0
+offset_top = 16.0
+offset_right = 79.0
+offset_bottom = 49.0
+texture = ExtResource("6_l0p0m")
+
+[node name="Area2D" type="Area2D" parent="backgroun/marker"]
+position = Vector2(-32, -16)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="backgroun/marker/Area2D"]
+position = Vector2(55.5, 32.5)
+shape = SubResource("RectangleShape2D_7ydvd")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Button" type="Button" parent="CanvasLayer"]
+self_modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -4.0
+offset_top = -4.0
+offset_right = -4.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_button_pressed"]

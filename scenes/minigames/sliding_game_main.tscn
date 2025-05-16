@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://5m2skgnd4njs"]
+
+[ext_resource type="PackedScene" uid="uid://c8noe0a63dcjg" path="res://scenes/Interaction/signpost.tscn" id="1_fe05p"]
+[ext_resource type="PackedScene" uid="uid://xslnt22jiinw" path="res://scenes/minigames/sliding_game_board.tscn" id="2_06jvn"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Signpost" parent="." instance=ExtResource("1_fe05p")]
+z_index = 1
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Signpost"]
+
+[node name="Panel" type="Panel" parent="Signpost/CanvasLayer"]
+custom_minimum_size = Vector2(500, 500)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="sliding_game_board" parent="Signpost/CanvasLayer/Panel" instance=ExtResource("2_06jvn")]
+layout_mode = 1

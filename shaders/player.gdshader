@@ -11,10 +11,10 @@ void fragment() {
 	if (n < progress) {
         discard;
     }
-	
+
 	COLOR = tint_color * COLOR;
-	
-    
+
+
 
     //COLOR = tex;
 }

@@ -4,6 +4,7 @@ var pos: Vector2
 var rota: float
 var dir: float
 var speed = 3
+@onready var my_hit_box: MyHitBox = $MyHitBox
 
 @onready var sprite: Sprite2D = $Sprite2D
 @export var afterimage_scene: PackedScene
@@ -15,7 +16,10 @@ var interval_decrease_rate := 0.002   # How much faster each spawn is
 func _ready() -> void:
 	global_position = pos
 	global_rotation = rota
-	$MyHitBox.set_current_damage_name("projectile_1")
+	my_hit_box.set_current_damage_name("projectile_1")
+	my_hit_box.set_damage(10)
+	#my_hit_box.set_knockback(5)
+
 
 func _physics_process(delta: float) -> void:
 	velocity = Vector2(speed, 0).rotated(dir)
@@ -42,6 +46,9 @@ func spawn_afterimage():
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	queue_free()
+
+
+
 
 
 #func _on_my_hit_box_area_entered(area: Area2D) -> void:

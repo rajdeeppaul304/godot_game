@@ -1,0 +1,120 @@
+[gd_scene load_steps=10 format=3 uid="uid://o5ug7lpcr12e"]
+
+[ext_resource type="Texture2D" uid="uid://b2jhtynig8hyb" path="res://assets/characters/minigame_assets/broly_level/part_1.png" id="1_kj76a"]
+[ext_resource type="Script" uid="uid://bvg8bf8r7q17p" path="res://scripts/world_scripts/last_level/part_1.gd" id="1_piide"]
+[ext_resource type="Texture2D" uid="uid://d1eadqk0q56xa" path="res://assets/characters/minigame_assets/broly_level/part_1_overlays/tree_overlays.png" id="2_l2x4r"]
+[ext_resource type="PackedScene" uid="uid://ct2rfy2e8m43c" path="res://scenes/player.tscn" id="2_t7jma"]
+[ext_resource type="Texture2D" uid="uid://1xx26ly2j2jl" path="res://assets/characters/minigame_assets/broly_level/part_1_overlays/single_tree.png" id="4_otoib"]
+[ext_resource type="Texture2D" uid="uid://qbjsbdp440mh" path="res://assets/characters/minigame_assets/broly_level/part_1_overlays/double_tree.png" id="5_dbbec"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_otoib"]
+radius = 13.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_piide"]
+radius = 9.00002
+height = 72.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_632m7"]
+size = Vector2(126, 71)
+
+[node name="part_1" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_piide")
+
+[node name="Entrance" type="Sprite2D" parent="."]
+position = Vector2(418, 8)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("1_kj76a")
+offset = Vector2(1.33331, 154.667)
+
+[node name="overlay" type="Sprite2D" parent="."]
+z_index = 4
+position = Vector2(420, 240)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_l2x4r")
+
+[node name="Player" parent="." instance=ExtResource("2_t7jma")]
+position = Vector2(118, 460)
+current_ball = "dragon_ball_7"
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(0, 1)
+zoom = Vector2(4, 4)
+limit_left = 0
+limit_top = 0
+limit_right = 840
+limit_bottom = 480
+limit_smoothed = true
+rotation_smoothing_enabled = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+y_sort_enabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+z_index = 2
+y_sort_enabled = true
+position = Vector2(667, 246)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("4_otoib")
+offset = Vector2(3.33331, -20)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+z_index = 3
+position = Vector2(668, 259)
+shape = SubResource("CircleShape2D_otoib")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+y_sort_enabled = true
+position = Vector2(-96, 96)
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D2"]
+z_index = 2
+y_sort_enabled = true
+position = Vector2(667, 246)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("4_otoib")
+offset = Vector2(3.33331, -20)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+z_index = 3
+position = Vector2(668, 259)
+shape = SubResource("CircleShape2D_otoib")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+y_sort_enabled = true
+position = Vector2(-444, -12)
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D3"]
+z_index = 2
+y_sort_enabled = true
+position = Vector2(667, 246)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("5_dbbec")
+offset = Vector2(3.33331, -20)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+z_index = 2
+position = Vector2(668, 260)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_piide")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D4"]
+polygon = PackedVector2Array(75, 119, 396, 120, 396, 49, 445, 49, 444, 120, 763, 120, 767, 177, 766, 210, 765, 263, 760, 296, 735, 333, 673, 399, 536, 400, 392, 400, 356, 424, 261, 424, 245, 401, 190, 402, 167, 423, 166, 473, 77, 475, 73, 349, 24, 291, 26, 258, 78, 208, 75, 126, -11, 163, -32, 376, -4, 521, 816, 472, 862, 136, 835, 14, 316, -3, 63, 67, 68, 143)
+
+[node name="next_scene" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="next_scene"]
+position = Vector2(420, 46.5)
+shape = SubResource("RectangleShape2D_632m7")
+
+[node name="SpawnPoints" type="Node" parent="."]
+
+[node name="spawnpoint1" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(119, 459)
+
+[node name="spawnpoint2" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(420, 106)
+
+[connection signal="body_entered" from="next_scene" to="." method="_on_next_scene_body_entered"]

@@ -1,0 +1,55 @@
+[gd_scene load_steps=5 format=3 uid="uid://bo64g4dq8ryk2"]
+
+[ext_resource type="Script" uid="uid://cbiqd3ndwn3es" path="res://scripts/menu/intro.gd" id="1_68tk8"]
+[ext_resource type="Texture2D" uid="uid://j1vehxvag8o5" path="res://assets/characters/menu/background_mountain.png" id="1_klgli"]
+[ext_resource type="Texture2D" uid="uid://7cl32625bbgo" path="res://assets/characters/menu/scroll.png" id="2_68tk8"]
+[ext_resource type="FontFile" uid="uid://bqdhxrsnpdf7g" path="res://assets/fonts/PixelOperator8.ttf" id="3_jcw5w"]
+
+[node name="Intro" type="Node2D"]
+script = ExtResource("1_68tk8")
+next_world = "speaking_piccolo"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="background" type="TextureRect" parent="CanvasLayer"]
+self_modulate = Color(0.301961, 0.443137, 0.443137, 1)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_klgli")
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -85.0
+offset_top = -48.0
+offset_right = 85.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(10, 10)
+pivot_offset = Vector2(85, 48)
+texture = ExtResource("2_68tk8")
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_left = 296.0
+offset_top = 368.0
+offset_right = 766.0
+offset_bottom = 460.0
+scale = Vector2(2.7, 2.7)
+theme_override_colors/font_color = Color(0.247059, 0.168627, 0.145098, 1)
+theme_override_colors/font_shadow_color = Color(0.662745, 0.482353, 0.305882, 1)
+theme_override_fonts/font = ExtResource("3_jcw5w")
+text = "YOU CAN SKIP ANY LEVEL 
+ANY TIME BY JUST CLICKING THIS BUTTON
+
+
+YOU WONT BE REWARDED POINTS FOR IT
+BUT ATLEAST YOU CAN ATTEMPT
+NEXT PUZZLES"
+horizontal_alignment = 1

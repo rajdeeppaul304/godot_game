@@ -1,0 +1,56 @@
+[gd_scene load_steps=10 format=3 uid="uid://c8noe0a63dcjg"]
+
+[ext_resource type="Script" uid="uid://b43get0jkoa6u" path="res://scripts/signpost.gd" id="1_c72pb"]
+[ext_resource type="Texture2D" uid="uid://bito0mvykly7b" path="res://assets/characters/minigame_assets/memory_puzzle/on_signpost.png" id="2_q8437"]
+[ext_resource type="PackedScene" uid="uid://dfexe77p0u3yp" path="res://scenes/Interaction/interaction_area.tscn" id="3_c72pb"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dvde5"]
+radius = 11.0
+
+[sub_resource type="Animation" id="Animation_cwxjm"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_c72pb"]
+resource_name = "hide_canvas"
+length = 0.6
+
+[sub_resource type="Animation" id="Animation_vjpnj"]
+resource_name = "show_canvas"
+length = 0.6
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rqua2"]
+_data = {
+&"RESET": SubResource("Animation_cwxjm"),
+&"hide_canvas": SubResource("Animation_c72pb"),
+&"show_canvas": SubResource("Animation_vjpnj")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_c72pb"]
+radius = 4.0
+height = 12.0
+
+[node name="Signpost" type="StaticBody2D"]
+z_index = 2
+y_sort_enabled = true
+script = ExtResource("1_c72pb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -23)
+texture = ExtResource("2_q8437")
+
+[node name="InteractionArea" parent="." instance=ExtResource("3_c72pb")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+position = Vector2(0, -11)
+shape = SubResource("CircleShape2D_dvde5")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_rqua2")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -6)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_c72pb")
+debug_color = Color(1, 0.0130725, 0.0103937, 0.42)

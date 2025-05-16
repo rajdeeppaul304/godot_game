@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://by2tc8x4g2tqj"]
 
-[ext_resource type="Script" uid="uid://kjrhxmgggt1h" path="res://scripts/projectile.gd" id="1_q3m7n"]
+[ext_resource type="Script" uid="uid://kjrhxmgggt1h" path="res://scripts/Interaction/projectile.gd" id="1_q3m7n"]
 [ext_resource type="PackedScene" uid="uid://ew4lg3xh2mt2" path="res://scenes/after_image.tscn" id="2_6q2a6"]
 [ext_resource type="Texture2D" uid="uid://bhvi4yn6p7i6a" path="res://assets/projectile_2.png" id="2_softn"]
 [ext_resource type="Script" uid="uid://br1jh6762i354" path="res://scripts/MyHitBox.gd" id="3_softn"]

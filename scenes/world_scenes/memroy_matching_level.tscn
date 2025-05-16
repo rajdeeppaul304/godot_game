@@ -1,0 +1,77 @@
+[gd_scene load_steps=11 format=3 uid="uid://dr0vn6wh67ekm"]
+
+[ext_resource type="Script" uid="uid://debt6nd4bxkxr" path="res://scripts/world_scripts/memroy_matching_level.gd" id="1_73adn"]
+[ext_resource type="Texture2D" uid="uid://7qaj2hg815em" path="res://assets/characters/minigame_assets/world_background/memory_matching_level_bg.png" id="1_dmk4t"]
+[ext_resource type="PackedScene" uid="uid://ct2rfy2e8m43c" path="res://scenes/player.tscn" id="2_l2nm5"]
+[ext_resource type="Texture2D" uid="uid://dy865l1jy65b8" path="res://assets/characters/minigame_assets/memory_puzzle/wire.png" id="3_l2nm5"]
+[ext_resource type="Shader" uid="uid://bsmj8kwec8m2t" path="res://shaders/memroy_matching_level.gdshader" id="4_m7vfy"]
+[ext_resource type="PackedScene" uid="uid://c8noe0a63dcjg" path="res://scenes/Interaction/signpost.tscn" id="4_p06mn"]
+[ext_resource type="PackedScene" uid="uid://d2168fyf06x5s" path="res://scenes/minigames/memory_matching.tscn" id="5_j2kd2"]
+[ext_resource type="PackedScene" uid="uid://cpys8x3bau4p7" path="res://scenes/item.tscn" id="8_a34in"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a34in"]
+shader = ExtResource("4_m7vfy")
+shader_parameter/wipe_progress = 1.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p06mn"]
+size = Vector2(125, 18)
+
+[node name="memory_matching_level" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_73adn")
+
+[node name="MemoryMatchingLevelBg" type="Sprite2D" parent="."]
+position = Vector2(280, 368)
+texture = ExtResource("1_dmk4t")
+
+[node name="Player" parent="." instance=ExtResource("2_l2nm5")]
+position = Vector2(191, 405)
+current_ball = "dragon_ball_2"
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(0, 1)
+zoom = Vector2(4, 4)
+limit_left = 0
+limit_top = 0
+limit_right = 536
+limit_bottom = 736
+limit_smoothed = true
+rotation_smoothing_enabled = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(1, 148, 19, 148, 28, 153, 54, 145, 70, 149, 113, 196, 130, 212, 161, 226, 169, 243, 168, 259, 173, 267, 173, 286, 173, 304, 167, 327, 167, 366, 151, 397, 142, 409, 145, 434, 140, 455, 143, 464, 143, 484, 158, 503, 155, 515, 138, 545, 111, 555, 133, 578, 161, 593, 169, 617, 164, 650, 183, 672, 208, 694, 237, 708, 321, 634, 351, 662, 398, 635, 447, 664, 465, 655, 474, 638, 471, 584, 474, 570, 444, 549, 410, 575, 366, 550, 343, 567, 313, 556, 305, 541, 276, 542, 237, 516, 226, 482, 216, 451, 206, 440, 215, 421, 213, 388, 219, 362, 264, 338, 309, 311, 319, 298, 282, 288, 282, 267, 276, 260, 286, 242, 288, 224, 342, 181, 400, 134, 397, 114, 376, 103, 343, 102, 262, 102, 236, 124, 206, 147, 155, 150, 119, 127, 75, 104, 0, 103, 0, 147, -3, 143, -14, 96, -10, 63, 176, 59, 427, 75, 407, 195, 365, 296, 367, 507, 522, 560, 513, 672, 235, 735, 61, 638, 25, 494, 95, 276, -2, 145)
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2(227, 275)
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D2"]
+z_index = 1
+material = SubResource("ShaderMaterial_a34in")
+position = Vector2(-56, -16)
+texture = ExtResource("3_l2nm5")
+centered = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(0.5, -1)
+shape = SubResource("RectangleShape2D_p06mn")
+
+[node name="Signpost" parent="." instance=ExtResource("4_p06mn")]
+position = Vector2(186, 330)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Signpost"]
+
+[node name="Panel" type="Panel" parent="Signpost/CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MemoryMatching" parent="Signpost/CanvasLayer/Panel" instance=ExtResource("5_j2kd2")]
+layout_mode = 1
+
+[node name="Item" parent="." instance=ExtResource("8_a34in")]
+position = Vector2(229, 248)
+item_name = "dragon_ball_2"

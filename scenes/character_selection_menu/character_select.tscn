@@ -1,0 +1,360 @@
+[gd_scene load_steps=25 format=3 uid="uid://ehuwnh6xjbac"]
+
+[ext_resource type="Script" uid="uid://u3epnhioffrj" path="res://scripts/character_selection_menu/character_select.gd" id="1_ywuko"]
+[ext_resource type="PackedScene" uid="uid://cfpd4m7dhf6yd" path="res://scenes/character_selection_menu/character_cell_selection.tscn" id="2_4pww1"]
+[ext_resource type="Texture2D" uid="uid://vr6nivgxi5jp" path="res://assets/characters/SimpleKeys/Classic/Dark/Spritesheets/ARROWLEFT.png" id="2_su8ms"]
+[ext_resource type="Texture2D" uid="uid://dqbkcnf5htu0k" path="res://assets/characters/SimpleKeys/Classic/Dark/Spritesheets/ARROWRIGHT.png" id="3_su8ms"]
+[ext_resource type="Texture2D" uid="uid://bp6x5x4hkleyq" path="res://assets/characters/character_selection/output/goku.png" id="5_s1uiy"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4pww1"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4pww1"]
+load_path = "res://.godot/imported/ARROWLEFT.png-dcd42c44dd11796901f198e782467313.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4pww1"]
+atlas = SubResource("CompressedTexture2D_4pww1")
+region = Rect2(0, 0, 17, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_su8ms"]
+texture = SubResource("AtlasTexture_4pww1")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6eln7"]
+atlas = ExtResource("2_su8ms")
+region = Rect2(0, 0, 17, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_s1uiy"]
+texture = SubResource("AtlasTexture_6eln7")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_su8ms"]
+atlas = ExtResource("2_su8ms")
+region = Rect2(17, 0, 17, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6eln7"]
+texture = SubResource("AtlasTexture_su8ms")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5nred"]
+atlas = ExtResource("2_su8ms")
+region = Rect2(0, 0, 17, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ru2ic"]
+texture = SubResource("AtlasTexture_5nred")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_su8ms"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s1uiy"]
+atlas = ExtResource("3_su8ms")
+region = Rect2(0, 0, 17, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_f5son"]
+texture = SubResource("AtlasTexture_s1uiy")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f5son"]
+atlas = ExtResource("3_su8ms")
+region = Rect2(0, 0, 17, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_oe5e4"]
+texture = SubResource("AtlasTexture_f5son")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8lfjh"]
+atlas = ExtResource("3_su8ms")
+region = Rect2(17, 0, 17, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5nred"]
+texture = SubResource("AtlasTexture_8lfjh")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ru2ic"]
+atlas = ExtResource("3_su8ms")
+region = Rect2(0, 0, 17, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xce06"]
+texture = SubResource("AtlasTexture_ru2ic")
+
+[node name="CharacterSelect" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ywuko")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.394428, 0.627399, 0.841999, 1)
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -600.0
+offset_top = 120.0
+offset_right = 600.0
+offset_bottom = 570.0
+grow_horizontal = 2
+
+[node name="Panel" type="Panel" parent="CanvasLayer/Panel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -90.0
+offset_top = -40.0
+offset_right = 90.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="left" type="Button" parent="CanvasLayer/Panel/Panel"]
+custom_minimum_size = Vector2(17, 16)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 9.0
+offset_top = -8.0
+offset_right = 26.0
+offset_bottom = 8.0
+grow_vertical = 2
+scale = Vector2(2, 2)
+pivot_offset = Vector2(8.5, 8)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_4pww1")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_su8ms")
+theme_override_styles/hover = SubResource("StyleBoxTexture_s1uiy")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_6eln7")
+theme_override_styles/normal = SubResource("StyleBoxTexture_ru2ic")
+
+[node name="right" type="Button" parent="CanvasLayer/Panel/Panel"]
+custom_minimum_size = Vector2(17, 16)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -35.0
+offset_top = -16.0
+offset_right = -18.0
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(2, 2)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_su8ms")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_f5son")
+theme_override_styles/hover = SubResource("StyleBoxTexture_oe5e4")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_5nred")
+theme_override_styles/normal = SubResource("StyleBoxTexture_xce06")
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/Panel"]
+custom_minimum_size = Vector2(266, 80)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -133.0
+offset_top = 40.0
+offset_right = 133.0
+offset_bottom = 120.0
+grow_horizontal = 2
+scale = Vector2(4, 4)
+pivot_offset = Vector2(133, 0)
+columns = 6
+
+[node name="Panel1" type="Panel" parent="CanvasLayer/Panel/GridContainer"]
+custom_minimum_size = Vector2(50, 80)
+layout_mode = 2
+
+[node name="character_cell_selection" parent="CanvasLayer/Panel/GridContainer/Panel1" instance=ExtResource("2_4pww1")]
+layout_mode = 1
+anchors_preset = 8
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -19.0
+offset_top = -28.0
+offset_right = 19.0
+offset_bottom = 28.0
+grow_vertical = 2
+
+[node name="Panel2" type="Panel" parent="CanvasLayer/Panel/GridContainer"]
+custom_minimum_size = Vector2(50, 80)
+layout_mode = 2
+
+[node name="character_cell_selection" parent="CanvasLayer/Panel/GridContainer/Panel2" instance=ExtResource("2_4pww1")]
+layout_mode = 1
+anchors_preset = 8
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -19.0
+offset_top = -28.0
+offset_right = 19.0
+offset_bottom = 28.0
+grow_vertical = 2
+
+[node name="Panel3" type="Panel" parent="CanvasLayer/Panel/GridContainer"]
+custom_minimum_size = Vector2(50, 80)
+layout_mode = 2
+
+[node name="character_cell_selection" parent="CanvasLayer/Panel/GridContainer/Panel3" instance=ExtResource("2_4pww1")]
+layout_mode = 1
+anchors_preset = 8
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -19.0
+offset_top = -28.0
+offset_right = 19.0
+offset_bottom = 28.0
+grow_vertical = 2
+
+[node name="Panel4" type="Panel" parent="CanvasLayer/Panel/GridContainer"]
+custom_minimum_size = Vector2(50, 80)
+layout_mode = 2
+
+[node name="character_cell_selection" parent="CanvasLayer/Panel/GridContainer/Panel4" instance=ExtResource("2_4pww1")]
+layout_mode = 1
+anchors_preset = 8
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -19.0
+offset_top = -28.0
+offset_right = 19.0
+offset_bottom = 28.0
+grow_vertical = 2
+
+[node name="Panel5" type="Panel" parent="CanvasLayer/Panel/GridContainer"]
+custom_minimum_size = Vector2(50, 80)
+layout_mode = 2
+
+[node name="character_cell_selection" parent="CanvasLayer/Panel/GridContainer/Panel5" instance=ExtResource("2_4pww1")]
+layout_mode = 1
+anchors_preset = 8
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -19.0
+offset_top = -28.0
+offset_right = 19.0
+offset_bottom = 28.0
+grow_vertical = 2
+
+[node name="Panel2" type="Panel" parent="CanvasLayer"]
+custom_minimum_size = Vector2(1000, 300)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -500.0
+offset_top = -480.0
+offset_right = 500.0
+offset_bottom = -180.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/Panel2"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -450.0
+offset_right = 450.0
+offset_bottom = 400.0
+grow_horizontal = 2
+theme_override_constants/h_separation = 0
+columns = 2
+
+[node name="Panel" type="Panel" parent="CanvasLayer/Panel2/GridContainer"]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 2
+
+[node name="portrait" type="TextureRect" parent="CanvasLayer/Panel2/GridContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_s1uiy")
+
+[node name="Panel2" type="Panel" parent="CanvasLayer/Panel2/GridContainer"]
+custom_minimum_size = Vector2(600, 300)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Panel2/GridContainer/Panel2"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 10.0
+offset_top = -40.5
+offset_right = 50.0
+offset_bottom = 40.5
+grow_vertical = 2
+
+[node name="name" type="Label" parent="CanvasLayer/Panel2/GridContainer/Panel2/VBoxContainer"]
+layout_mode = 2
+
+[node name="race" type="Label" parent="CanvasLayer/Panel2/GridContainer/Panel2/VBoxContainer"]
+layout_mode = 2
+
+[node name="StatContainer" type="VBoxContainer" parent="CanvasLayer/Panel2/GridContainer/Panel2/VBoxContainer"]
+layout_mode = 2
+
+[node name="PowerRow" type="HBoxContainer" parent="CanvasLayer/Panel2/GridContainer/Panel2/VBoxContainer/StatContainer"]
+layout_mode = 2
+
+[node name="PowerLabel" type="Label" parent="CanvasLayer/Panel2/GridContainer/Panel2/VBoxContainer/StatContainer/PowerRow"]
+layout_mode = 2
+text = "Power"
+
+[node name="PowerBarContainer" type="HBoxContainer" parent="CanvasLayer/Panel2/GridContainer/Panel2/VBoxContainer/StatContainer/PowerRow"]
+layout_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/Panel2/GridContainer/Panel2/VBoxContainer/StatContainer/PowerRow/PowerBarContainer"]
+layout_mode = 2
+
+[node name="PowerBar" type="ProgressBar" parent="CanvasLayer/Panel2/GridContainer/Panel2/VBoxContainer/StatContainer/PowerRow/PowerBarContainer/CenterContainer"]
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+show_percentage = false
+
+[node name="PowerValueLabel" type="Label" parent="CanvasLayer/Panel2/GridContainer/Panel2/VBoxContainer/StatContainer/PowerRow/PowerBarContainer"]
+layout_mode = 2
+text = "asdf"
+
+[node name="Panel3" type="Panel" parent="CanvasLayer"]
+custom_minimum_size = Vector2(500, 100)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -250.0
+offset_top = -160.0
+offset_right = 250.0
+offset_bottom = -60.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Button" type="Button" parent="CanvasLayer/Panel3"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -40.0
+offset_right = 100.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Start"
+
+[connection signal="pressed" from="CanvasLayer/Panel/Panel/left" to="." method="_on_left_pressed"]
+[connection signal="pressed" from="CanvasLayer/Panel/Panel/right" to="." method="_on_right_pressed"]
+[connection signal="pressed" from="CanvasLayer/Panel3/Button" to="." method="_on_button_pressed"]

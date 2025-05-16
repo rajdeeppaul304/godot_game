@@ -1,0 +1,79 @@
+[gd_scene load_steps=10 format=3 uid="uid://8n8d4dfckr6i"]
+
+[ext_resource type="Script" uid="uid://f1qbe8y5ps7e" path="res://scripts/world_scripts/world_3.gd" id="1_8gajp"]
+[ext_resource type="PackedScene" uid="uid://b21xsfx3sncvg" path="res://scenes/enemy_scenes/big_enemy_trex.tscn" id="2_thfjp"]
+[ext_resource type="Texture2D" uid="uid://bnfmvx5tssxee" path="res://assets/characters/boss_floor.png" id="3_hvrkn"]
+[ext_resource type="PackedScene" uid="uid://ct2rfy2e8m43c" path="res://scenes/player.tscn" id="4_jscvh"]
+[ext_resource type="Script" uid="uid://bjt2p3mtal3x7" path="res://scripts/world_scripts/world_3_to_2_interactable_area.gd" id="5_glje1"]
+[ext_resource type="PackedScene" uid="uid://dfexe77p0u3yp" path="res://scenes/Interaction/interaction_area.tscn" id="6_yp3a1"]
+[ext_resource type="PackedScene" uid="uid://c8noe0a63dcjg" path="res://scenes/Interaction/signpost.tscn" id="7_7clk2"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_wcc5h"]
+vertices = PackedVector2Array(697.977, 162.953, 694.008, 522.813, 631.477, 557, 431.969, 560, 298.023, 561.992, 66.8281, 556.023, 28.9922, 519.141, 26, 175.719, 78.9297, 112.992, 631.297, 110)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(78, 111, 632, 108, 700, 162, 696, 524, 632, 559, 432, 562, 298, 564, 66, 558, 27, 520, 24, 175)])
+agent_radius = 2.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bmkes"]
+radius = 22.0227
+
+[node name="World3" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_8gajp")
+
+[node name="Enemy" parent="." instance=ExtResource("2_thfjp")]
+position = Vector2(356, 181)
+motion_mode = 0
+wall_min_slide_angle = 0.261799
+detection_collision_radius = 800.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(360, 300)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("3_hvrkn")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2(1, 2)
+scale = Vector2(1.5, 1.5)
+polygon = PackedVector2Array(17, 109, 50, 76, 430, 76, 462, 107, 464, 339, 432, 371, 288, 372, 259, 399, 221, 399, 194, 372, 42, 371, 16, 339, 17, 111, 16, 67, -41, 32, -32, 426, 182, 432, 212, 427, 274, 432, 322, 435, 463, 399, 508, 351, 528, -13, 271, -20, -41, -8)
+
+[node name="Player" parent="." instance=ExtResource("4_jscvh")]
+position = Vector2(401, 357)
+current_ball = "dragon_ball_7"
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+zoom = Vector2(4, 4)
+limit_left = 0
+limit_top = 0
+limit_right = 712
+limit_bottom = 599
+limit_smoothed = true
+rotation_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_wcc5h")
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(240, 394)
+script = ExtResource("5_glje1")
+
+[node name="InteractionArea" parent="Node2D" instance=ExtResource("6_yp3a1")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/InteractionArea"]
+shape = SubResource("CircleShape2D_bmkes")
+
+[node name="Signpost" parent="." instance=ExtResource("7_7clk2")]
+position = Vector2(368, 336)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Signpost"]
+
+[node name="Panel" type="Panel" parent="Signpost/CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[connection signal="body_entered" from="Node2D/InteractionArea" to="." method="_on_interaction_area_body_entered"]
+[connection signal="body_exited" from="Node2D/InteractionArea" to="." method="_on_interaction_area_body_exited"]

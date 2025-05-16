@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://djlbprtmxoxbo"]
+
+[ext_resource type="Texture2D" uid="uid://dk74fv5i8uffm" path="res://assets/characters/minigame_assets/broly_level/background_1.png" id="1_iciy5"]
+[ext_resource type="PackedScene" uid="uid://ct2rfy2e8m43c" path="res://scenes/player.tscn" id="2_jqi0w"]
+
+[node name="broly_level" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(476, 384)
+texture = ExtResource("1_iciy5")
+
+[node name="Player" parent="." instance=ExtResource("2_jqi0w")]
+position = Vector2(468, 195)
+current_ball = "dragon_ball_7"
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(0, 1)
+zoom = Vector2(4, 4)
+limit_left = 0
+limit_top = 0
+limit_bottom = 600
+limit_smoothed = true
+rotation_smoothing_enabled = true

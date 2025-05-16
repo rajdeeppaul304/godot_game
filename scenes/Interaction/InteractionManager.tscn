@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://c4rhr11pdp142"]
+
+[ext_resource type="Script" uid="uid://d1hhd0ywjnqc5" path="res://scripts/Interaction/interaction_manager.gd" id="1_jdkvw"]
+[ext_resource type="FontFile" uid="uid://b24jiltnt8nej" path="res://assets/characters/MedodicaRegular.otf" id="2_c744h"]
+
+[node name="InteractionManager" type="Node2D"]
+z_index = 10
+y_sort_enabled = true
+script = ExtResource("1_jdkvw")
+
+[node name="Label" type="Label" parent="."]
+z_index = 100
+z_as_relative = false
+y_sort_enabled = true
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -45.5
+offset_right = 45.5
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_c744h")
+text = "[E] TO INTERACT"
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://c2pnkcs8i070i"]
+
+[ext_resource type="Script" uid="uid://kiql5mft1is" path="res://card.gd" id="1_d4lxf"]
+[ext_resource type="Shader" uid="uid://bxh2cylwfv0i3" path="res://scenes/minigames/memory_matching_game.gdshader" id="2_0mo5g"]
+[ext_resource type="Texture2D" uid="uid://dog772mcp2c2o" path="res://assets/characters/portraits/goku.png" id="2_py47b"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_py47b"]
+shader = ExtResource("2_0mo5g")
+shader_parameter/flip_progress = 0.0
+shader_parameter/horizontal_flip = true
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0mo5g"]
+size = Vector2(64, 64)
+
+[node name="card" type="Panel"]
+custom_minimum_size = Vector2(64, 64)
+scale = Vector2(3, 3)
+mouse_filter = 2
+script = ExtResource("1_d4lxf")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_py47b")
+texture = ExtResource("2_py47b")
+centered = false
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(32, 32)
+shape = SubResource("RectangleShape2D_0mo5g")
+
+[node name="Button" type="Button" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

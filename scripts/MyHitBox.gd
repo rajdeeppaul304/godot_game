@@ -3,6 +3,7 @@ extends Area2D
 
 @export var damage : float= 10
 var damage_name : String
+@export var knockback :float = 5
 
 func _init() -> void:
 	collision_layer = 3
@@ -22,3 +23,10 @@ func set_damage(dam):
 
 func get_damage():
 	return damage
+	
+func set_knockback(knock):
+	
+	knockback = knock
+
+func get_knockback():
+	return knockback

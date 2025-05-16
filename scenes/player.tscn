@@ -1,8 +1,8 @@
-[gd_scene load_steps=46 format=3 uid="uid://ct2rfy2e8m43c"]
+[gd_scene load_steps=55 format=3 uid="uid://ct2rfy2e8m43c"]
 
 [ext_resource type="Script" uid="uid://ch85g6nxg6tdf" path="res://scripts/player.gd" id="1_g2els"]
 [ext_resource type="Shader" uid="uid://x7iua3wlpebb" path="res://shaders/player.gdshader" id="2_jej6c"]
-[ext_resource type="Texture2D" uid="uid://drx1uofnhhyb4" path="res://assets/characters/final_sprites/videl-sheet.png" id="3_jej6c"]
+[ext_resource type="Texture2D" uid="uid://bm3680lhj6m8v" path="res://assets/characters/final_sprites/android_18-sheet.png" id="3_jej6c"]
 [ext_resource type="Script" uid="uid://br1jh6762i354" path="res://scripts/MyHitBox.gd" id="3_qhqgy"]
 [ext_resource type="Texture2D" uid="uid://bjsr724crcexo" path="res://assets/UI_Elements/health_layer1.png" id="4_tuyoq"]
 [ext_resource type="Texture2D" uid="uid://cqwap03eudc55" path="res://assets/UI_Elements/health_layer3.png" id="5_fjrip"]
@@ -13,6 +13,14 @@
 [ext_resource type="Texture2D" uid="uid://du1b1m4vr8rsy" path="res://assets/UI_Elements/health_potion.png" id="10_jej6c"]
 [ext_resource type="FontFile" uid="uid://fk7y3c47rk31" path="res://assets/fonts/ka1.ttf" id="11_d2wvv"]
 [ext_resource type="PackedScene" uid="uid://bhobfykeucqej" path="res://scenes/touch_controls.tscn" id="12_3v2ag"]
+[ext_resource type="FontFile" uid="uid://btspnwqnyrotg" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="13_f1ej7"]
+[ext_resource type="Texture2D" uid="uid://b00a25e0btcoi" path="res://assets/characters/minigame_assets/dragon_balls/dragon_ball_2.png" id="15_60mlk"]
+[ext_resource type="Texture2D" uid="uid://d1d0lgi6p6bug" path="res://assets/characters/minigame_assets/dragon_balls/dragon_ball_1.png" id="15_oprun"]
+[ext_resource type="Texture2D" uid="uid://13is6r31lw5l" path="res://assets/characters/minigame_assets/dragon_balls/dragon_ball_3.png" id="16_i4ail"]
+[ext_resource type="Texture2D" uid="uid://08h04b5nyn53" path="res://assets/characters/minigame_assets/dragon_balls/dragon_ball_4.png" id="17_a38lo"]
+[ext_resource type="Texture2D" uid="uid://dja3ifimrfwg1" path="res://assets/characters/minigame_assets/dragon_balls/dragon_ball_5.png" id="18_4ni07"]
+[ext_resource type="Texture2D" uid="uid://bwhx0ny3fxtfo" path="res://assets/characters/minigame_assets/dragon_balls/dragon_ball_6.png" id="19_l71n6"]
+[ext_resource type="Texture2D" uid="uid://pw4aw8oj0n63" path="res://assets/characters/minigame_assets/dragon_balls/dragon_ball_7.png" id="20_ke2ow"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g2els"]
 radius = 6.0
@@ -613,6 +621,36 @@ tracks/0/keys = {
 "values": [Vector2i(2, 1), Vector2i(3, 1), Vector2i(4, 1), Vector2i(5, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_dt7fs"]
+resource_name = "transition_out"
+length = 0.8
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 1), Vector2i(0, 0), Vector2i(0, 1), Vector2i(0, 2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_31cv2"]
 _data = {
 &"RESET": SubResource("Animation_tuyoq"),
@@ -639,7 +677,8 @@ _data = {
 &"side_melee_3": SubResource("Animation_4ni07"),
 &"side_ranged": SubResource("Animation_l71n6"),
 &"side_run": SubResource("Animation_ke2ow"),
-&"side_walk": SubResource("Animation_ujl30")
+&"side_walk": SubResource("Animation_ujl30"),
+&"transition_out": SubResource("Animation_dt7fs")
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dqkch"]
@@ -655,19 +694,18 @@ radius = 12.0416
 radius = 18.0278
 
 [node name="Player" type="CharacterBody2D"]
+z_index = 1
 y_sort_enabled = true
 position = Vector2(0, -6)
 collision_layer = 11
 script = ExtResource("1_g2els")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-z_index = 2
-y_sort_enabled = true
 position = Vector2(0, 1)
 shape = SubResource("CircleShape2D_g2els")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-z_index = 2
+z_index = 1
 material = SubResource("ShaderMaterial_f1ej7")
 position = Vector2(0, -7)
 texture = ExtResource("3_jej6c")
@@ -720,7 +758,6 @@ text = "asdfsad"
 [node name="projectile_detection" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="projectile_detection"]
-visible = false
 z_index = 2
 position = Vector2(0, -4)
 shape = SubResource("CircleShape2D_qlg0r")
@@ -728,12 +765,11 @@ debug_color = Color(0.573565, 0.387283, 1, 0.42)
 
 [node name="player_hurtbox" type="Area2D" parent="."]
 collision_layer = 8
-collision_mask = 8
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="player_hurtbox"]
 position = Vector2(0, -3)
 shape = SubResource("CircleShape2D_tuyoq")
-disabled = true
 
 [node name="projectile_aim" type="Area2D" parent="."]
 z_index = 3
@@ -786,6 +822,65 @@ offset_bottom = 267.0
 scale = Vector2(8, 8)
 texture = ExtResource("10_jej6c")
 
+[node name="skip_button" type="Button" parent="canvas_hud"]
+offset_left = 1678.0
+offset_top = 132.0
+offset_right = 1733.0
+offset_bottom = 163.0
+scale = Vector2(4, 4)
+text = "skip"
+
+[node name="skip_panel_confirm" type="Panel" parent="canvas_hud"]
+visible = false
+z_index = 20
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(4, 4)
+pivot_offset = Vector2(20, 20)
+
+[node name="Label" type="Label" parent="canvas_hud/skip_panel_confirm"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -154.75
+offset_top = -20.0
+offset_right = 155.25
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(155, 11.5)
+text = "Are you sure you want to skip this level?"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="skip_not_confirm" type="Button" parent="canvas_hud/skip_panel_confirm"]
+layout_mode = 0
+offset_left = -22.75
+offset_top = 26.75
+offset_right = 11.25
+offset_bottom = 57.75
+text = "NO"
+
+[node name="skip_confirm" type="Button" parent="canvas_hud/skip_panel_confirm"]
+layout_mode = 0
+offset_left = 27.5
+offset_top = 25.5
+offset_right = 62.5
+offset_bottom = 56.5
+text = "Yes"
+
 [node name="health_potion_label_group" type="Control" parent="canvas_hud"]
 layout_mode = 3
 anchors_preset = 0
@@ -808,7 +903,11 @@ offset_left = 175.0
 offset_top = 286.0
 offset_right = 344.0
 offset_bottom = 373.0
-theme_override_fonts/font = ExtResource("11_d2wvv")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.0598949, 0.806722, 0.0503077, 1)
+theme_override_colors/font_outline_color = Color(0.541176, 0.964706, 0.152941, 1)
+theme_override_constants/outline_size = 16
+theme_override_fonts/font = ExtResource("13_f1ej7")
 theme_override_font_sizes/font_size = 64
 text = "999"
 vertical_alignment = 1
@@ -835,15 +934,60 @@ offset_left = 513.0
 offset_top = 149.0
 offset_right = 682.0
 offset_bottom = 236.0
-theme_override_fonts/font = ExtResource("11_d2wvv")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.639305, 0.624105, 0.0104305, 1)
+theme_override_colors/font_outline_color = Color(1, 0.729412, 0, 1)
+theme_override_constants/outline_size = 16
+theme_override_fonts/font = ExtResource("13_f1ej7")
 theme_override_font_sizes/font_size = 64
 text = "999"
 vertical_alignment = 1
 
-[node name="touch_controls" parent="canvas_hud" instance=ExtResource("12_3v2ag")]
+[node name="touch_controls" parent="canvas_hud" node_paths=PackedStringArray("player") instance=ExtResource("12_3v2ag")]
+visible = false
+player = NodePath("../..")
+
+[node name="Dragon_Balls" type="Panel" parent="canvas_hud"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = 1502.0
+offset_top = 52.0
+offset_right = 1637.0
+offset_bottom = 68.0
+scale = Vector2(3, 3)
+
+[node name="dragon_ball_1" type="Sprite2D" parent="canvas_hud/Dragon_Balls"]
+position = Vector2(8, 8)
+texture = ExtResource("15_oprun")
+
+[node name="dragon_ball_2" type="Sprite2D" parent="canvas_hud/Dragon_Balls"]
+position = Vector2(28, 8)
+texture = ExtResource("15_60mlk")
+
+[node name="dragon_ball_3" type="Sprite2D" parent="canvas_hud/Dragon_Balls"]
+position = Vector2(48, 8)
+texture = ExtResource("16_i4ail")
+
+[node name="dragon_ball_4" type="Sprite2D" parent="canvas_hud/Dragon_Balls"]
+position = Vector2(68, 8)
+texture = ExtResource("17_a38lo")
+
+[node name="dragon_ball_5" type="Sprite2D" parent="canvas_hud/Dragon_Balls"]
+position = Vector2(88, 8)
+texture = ExtResource("18_4ni07")
+
+[node name="dragon_ball_6" type="Sprite2D" parent="canvas_hud/Dragon_Balls"]
+position = Vector2(108, 8)
+texture = ExtResource("19_l71n6")
+
+[node name="dragon_ball_7" type="Sprite2D" parent="canvas_hud/Dragon_Balls"]
+position = Vector2(128, 8)
+texture = ExtResource("20_ke2ow")
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="timers/attack_cooldown" to="." method="_on_attack_cooldown_timeout"]
 [connection signal="timeout" from="timers/combo_timer" to="." method="_on_combo_timer_timeout"]
 [connection signal="timeout" from="timers/ranged_timer" to="." method="_on_ranged_timer_timeout"]
 [connection signal="timeout" from="timers/timer_after_melee_3" to="." method="_on_timer_after_melee_3_timeout"]
+[connection signal="pressed" from="canvas_hud/skip_button" to="." method="_on_skip_button_pressed"]
+[connection signal="pressed" from="canvas_hud/skip_panel_confirm/skip_not_confirm" to="." method="_on_skip_not_confirm_pressed"]
+[connection signal="pressed" from="canvas_hud/skip_panel_confirm/skip_confirm" to="." method="_on_skip_confirm_pressed"]

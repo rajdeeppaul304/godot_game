@@ -1,12 +1,15 @@
-[gd_scene load_steps=14 format=3 uid="uid://gior6eyndthw"]
+[gd_scene load_steps=18 format=3 uid="uid://gior6eyndthw"]
 
 [ext_resource type="Texture2D" uid="uid://5ntb43rhdlgf" path="res://assets/sprites/tilesets/grass.png" id="1_p4k2t"]
+[ext_resource type="Script" uid="uid://b703la55eq7y3" path="res://scripts/world_scripts/world_2.gd" id="1_uxhhh"]
 [ext_resource type="Texture2D" uid="uid://bx5d3louw4ri6" path="res://assets/sprites/tilesets/plains.png" id="2_4wnbh"]
 [ext_resource type="Texture2D" uid="uid://bfngdbm512n5i" path="res://assets/sprites/objects/objects.png" id="3_0hg7c"]
 [ext_resource type="Texture2D" uid="uid://dn3thqtdytm5e" path="res://assets/sprites/tilesets/walls/walls.png" id="4_uxhhh"]
 [ext_resource type="Texture2D" uid="uid://dx0lp248rcycc" path="res://assets/sprites/tilesets/walls/wooden_door.png" id="5_m7cqh"]
 [ext_resource type="Texture2D" uid="uid://cfvhainqevt57" path="res://assets/characters/Sprite-0031.png" id="6_0hg7c"]
 [ext_resource type="PackedScene" uid="uid://ct2rfy2e8m43c" path="res://scenes/player.tscn" id="6_4wnbh"]
+[ext_resource type="PackedScene" uid="uid://dfexe77p0u3yp" path="res://scenes/Interaction/interaction_area.tscn" id="9_m7cqh"]
+[ext_resource type="Script" uid="uid://byeoom5btoal1" path="res://scripts/world_scripts/world_2_to_3_interactable_area.gd" id="9_xj6ct"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xj6ct"]
 texture = ExtResource("1_p4k2t")
@@ -335,7 +338,11 @@ sources/2 = SubResource("TileSetAtlasSource_42yqt")
 sources/3 = SubResource("TileSetAtlasSource_5ye77")
 sources/4 = SubResource("TileSetAtlasSource_lpabp")
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_m7cqh"]
+radius = 14.0
+
 [node name="World2" type="Node2D"]
+script = ExtResource("1_uxhhh")
 
 [node name="TileMap" type="TileMap" parent="."]
 z_index = 1
@@ -390,7 +397,8 @@ polygon = PackedVector2Array(477, 350, 490, 350, 490, 339, 510, 339, 510, 350, 5
 polygon = PackedVector2Array(210, 206, 210, 195, 230, 195, 230, 207, 245, 207, 255, 198, 256, 180, 400, 180, 426, 182, 426, 171, 446, 171, 446, 183, 455, 183, 455, 195, 458, 205, 450, 214, 445, 216, 402, 216, 399, 212, 264, 212, 274, 227, 266, 237, 261, 240, 218, 240, 209, 235, 209, 206, 202, 207, 198, 230, 206, 247, 235, 254, 270, 255, 286, 222, 414, 223, 469, 222, 460, 159, 417, 157, 313, 167, 211, 172, 201, 192, 201, 206)
 
 [node name="Player" parent="." instance=ExtResource("6_4wnbh")]
-position = Vector2(430, 198)
+position = Vector2(90, 632)
+current_ball = "dragon_ball_2"
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(4, 4)
@@ -402,3 +410,20 @@ limit_smoothed = true
 rotation_smoothing_enabled = true
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
+
+[node name="SpawnPoints" type="Node" parent="."]
+
+[node name="SpawnPoint2" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(504, 363)
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2(68, 563)
+script = ExtResource("9_xj6ct")
+
+[node name="InteractionArea" parent="StaticBody2D2" instance=ExtResource("9_m7cqh")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2/InteractionArea"]
+shape = SubResource("CircleShape2D_m7cqh")
+
+[connection signal="body_entered" from="StaticBody2D2/InteractionArea" to="." method="_on_interaction_area_body_entered"]
+[connection signal="body_exited" from="StaticBody2D2/InteractionArea" to="." method="_on_interaction_area_body_exited"]

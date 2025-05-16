@@ -1,0 +1,140 @@
+[gd_scene load_steps=16 format=3 uid="uid://dge6xaaqdms2b"]
+
+[ext_resource type="Script" uid="uid://7q04lojikhcl" path="res://scripts/world_scripts/timing_bar_level.gd" id="1_h6hrb"]
+[ext_resource type="PackedScene" uid="uid://dslaaft84obbn" path="res://scenes/minigames/timing_bar.tscn" id="1_n5ep8"]
+[ext_resource type="Texture2D" uid="uid://c0cabqsfkc02c" path="res://assets/characters/minigame_assets/world_background/timing_bar_level_bg.png" id="3_ikvv0"]
+[ext_resource type="Shader" uid="uid://b63rskjseyytw" path="res://shaders/timing_bar_level.gdshader" id="4_g08qr"]
+[ext_resource type="Texture2D" uid="uid://bkk52odai4txw" path="res://assets/Enemies/death_particles/particle_big.png" id="6_frgm3"]
+[ext_resource type="Texture2D" uid="uid://d0b6igtdb1bav" path="res://assets/characters/minigame_assets/timing_bar/boulder.png" id="6_ntpcq"]
+[ext_resource type="PackedScene" uid="uid://ct2rfy2e8m43c" path="res://scenes/player.tscn" id="7_ikvv0"]
+[ext_resource type="Texture2D" uid="uid://wwb5l4coe5jh" path="res://assets/Enemies/death_particles/particle_medium.png" id="7_ntpcq"]
+[ext_resource type="Texture2D" uid="uid://b3fwg58q6nwcu" path="res://assets/Enemies/death_particles/particle_small.png" id="8_wrvpb"]
+[ext_resource type="PackedScene" uid="uid://cpys8x3bau4p7" path="res://scenes/item.tscn" id="10_ntpcq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ikvv0"]
+size = Vector2(138, 20)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wrvpb"]
+shader = ExtResource("4_g08qr")
+shader_parameter/fade_amount = 0.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ho5lk"]
+atlas = ExtResource("6_ntpcq")
+region = Rect2(0, 0, 64, 80)
+
+[sub_resource type="Curve" id="Curve_ho5lk"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.92328, 0.325283), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ikvv0"]
+radius = 32.0
+
+[node name="timing_bar_level" type="Node2D"]
+script = ExtResource("1_h6hrb")
+
+[node name="background" type="Sprite2D" parent="."]
+position = Vector2(218, 366)
+texture = ExtResource("3_ikvv0")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="timing_bar" parent="CanvasLayer" instance=ExtResource("1_n5ep8")]
+position = Vector2(46, 71)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(147, 105, 201, 53, 221, 55, 242, 53, 275, 72, 271, 77, 286, 93, 284, 98, 293, 113, 272, 136, 248, 138, 246, 197, 290, 199, 306, 210, 287, 234, 305, 252, 321, 256, 279, 308, 305, 314, 323, 335, 252, 408, 295, 431, 316, 458, 250, 524, 282, 563, 256, 596, 278, 621, 292, 638, 270, 665, 145, 667, 118, 650, 101, 634, 152, 584, 142, 572, 127, 567, 96, 541, 148, 487, 171, 481, 172, 473, 161, 472, 132, 450, 146, 408, 213, 351, 230, 349, 230, 338, 215, 333, 181, 308, 159, 292, 130, 276, 112, 262, 114, 248, 145, 222, 170, 202, 215, 195, 216, 139, 181, 136, 146, 107, 123, 92, 72, 225, 61, 478, 67, 710, 294, 723, 341, 613, 343, 342, 340, 53, 176, 22, 130, 84, 125, 122)
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(233, 389)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-27, 8)
+shape = SubResource("RectangleShape2D_ikvv0")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D2"]
+material = SubResource("ShaderMaterial_wrvpb")
+position = Vector2(255, 342)
+texture = SubResource("AtlasTexture_ho5lk")
+
+[node name="particles" type="Node2D" parent="StaticBody2D2/Sprite2D"]
+position = Vector2(-2, 8)
+
+[node name="big" type="CPUParticles2D" parent="StaticBody2D2/Sprite2D/particles"]
+self_modulate = Color(0.54902, 0.321569, 0.160784, 1)
+emitting = false
+amount = 3
+texture = ExtResource("6_frgm3")
+lifetime = 0.4
+one_shot = true
+explosiveness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 80.0
+angle_min = -720.0
+angle_max = 720.0
+scale_amount_min = 0.8
+scale_amount_curve = SubResource("Curve_ho5lk")
+
+[node name="medium" type="CPUParticles2D" parent="StaticBody2D2/Sprite2D/particles"]
+self_modulate = Color(0.807843, 0.517647, 0.321569, 1)
+emitting = false
+amount = 3
+texture = ExtResource("7_ntpcq")
+lifetime = 0.4
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 60.0
+initial_velocity_max = 60.0
+angle_min = -720.0
+angle_max = 720.0
+scale_amount_min = 0.8
+scale_amount_curve = SubResource("Curve_ho5lk")
+
+[node name="small" type="CPUParticles2D" parent="StaticBody2D2/Sprite2D/particles"]
+self_modulate = Color(0.529412, 0.294118, 0.192157, 1)
+emitting = false
+amount = 3
+texture = ExtResource("8_wrvpb")
+lifetime = 0.4
+one_shot = true
+explosiveness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 20.0
+initial_velocity_max = 40.0
+angle_min = -720.0
+angle_max = 720.0
+scale_amount_curve = SubResource("Curve_ho5lk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(261, 353)
+shape = SubResource("CircleShape2D_ikvv0")
+
+[node name="Player" parent="." instance=ExtResource("7_ikvv0")]
+position = Vector2(204, 540)
+current_ball = "dragon_ball_5"
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(0, 7)
+zoom = Vector2(4.5, 4.5)
+limit_left = 0
+limit_top = 0
+limit_right = 437
+limit_bottom = 732
+limit_smoothed = true
+rotation_smoothing_enabled = true
+
+[node name="Item" parent="." instance=ExtResource("10_ntpcq")]
+position = Vector2(229, 97)
+item_name = "dragon_ball_5"
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

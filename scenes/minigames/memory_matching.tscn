@@ -1,0 +1,52 @@
+[gd_scene load_steps=2 format=3 uid="uid://d2168fyf06x5s"]
+
+[ext_resource type="Script" uid="uid://bu3gd61nshm3n" path="res://scripts/minigames/memory_matching.gd" id="2_wmtml"]
+
+[node name="MemoryMatching" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_wmtml")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -144.0
+offset_top = 96.0
+offset_right = 145.0
+offset_bottom = 119.0
+grow_horizontal = 2
+text = "Solve this puzzle to open the gates"
+
+[node name="moves" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1383.0
+offset_top = 52.0
+offset_right = 1423.0
+offset_bottom = 75.0
+
+[node name="score" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1375.0
+offset_top = 160.0
+offset_right = 1415.0
+offset_bottom = 183.0
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(3, 3)
+pivot_offset = Vector2(960, 540)
+
+[node name="GridContainer" type="GridContainer" parent="CenterContainer"]
+layout_mode = 2
+columns = 4

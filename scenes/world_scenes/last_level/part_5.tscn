@@ -1,0 +1,200 @@
+[gd_scene load_steps=21 format=3 uid="uid://g8o5geqwgfyh"]
+
+[ext_resource type="Script" uid="uid://bn8u40ic2vuwi" path="res://scripts/world_scripts/last_level/part_5.gd" id="1_bmd4e"]
+[ext_resource type="Texture2D" uid="uid://cq6d7nntjs4xu" path="res://assets/characters/minigame_assets/broly_level/part_5.png" id="1_d5mfr"]
+[ext_resource type="PackedScene" uid="uid://cbl8qp3q56px5" path="res://scenes/world_scenes/last_level/crystal.tscn" id="2_bmd4e"]
+[ext_resource type="PackedScene" uid="uid://ct2rfy2e8m43c" path="res://scenes/player.tscn" id="3_l1tca"]
+[ext_resource type="Texture2D" uid="uid://bc06h48q6bdop" path="res://assets/characters/minigame_assets/broly_level/part_5_overlays/left_door.png" id="4_kgv11"]
+[ext_resource type="Texture2D" uid="uid://c4kjfbvduts7u" path="res://assets/characters/minigame_assets/broly_level/part_5_overlays/right_door.png" id="5_8ut0q"]
+[ext_resource type="PackedScene" uid="uid://clvs677cd2g8j" path="res://scenes/enemy_scenes/spawnable_enemy.tscn" id="8_kgv11"]
+[ext_resource type="Texture2D" uid="uid://dyktiux55uvku" path="res://assets/Enemies/final_sprites/snake2.png" id="9_2235o"]
+[ext_resource type="Texture2D" uid="uid://c44o36in07aax" path="res://assets/Enemies/final_sprites/cell_jr.png" id="10_bcfty"]
+[ext_resource type="Texture2D" uid="uid://cyj457eavcm2t" path="res://assets/Enemies/final_sprites/general_tao.png" id="11_52gjy"]
+[ext_resource type="Texture2D" uid="uid://dxshotmbkx3dt" path="res://assets/Enemies/final_sprites/sabertooth_tiger.png" id="12_oyle3"]
+[ext_resource type="Texture2D" uid="uid://bwtsgir7yvwcx" path="res://assets/Enemies/final_sprites/kuma_mercenary2.png" id="13_5es5u"]
+
+[sub_resource type="Animation" id="Animation_mlx1p"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Area2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_xwmlr"]
+resource_name = "door_close"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Area2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -81)]
+}
+
+[sub_resource type="Animation" id="Animation_capa5"]
+resource_name = "door_open"
+length = 2.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Area2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -81), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2235o"]
+_data = {
+&"RESET": SubResource("Animation_mlx1p"),
+&"door_close": SubResource("Animation_xwmlr"),
+&"door_open": SubResource("Animation_capa5")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bcfty"]
+size = Vector2(36, 87)
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_l1tca"]
+vertices = PackedVector2Array(476.008, 5.99219, 476.977, 355.961, 5.97656, 352.031, 5.00781, 5)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(1, 1, 480, 2, 481, 360, 2, 356)])
+source_geometry_mode = 2
+source_geometry_group_name = &"navigation"
+agent_radius = 4.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_capa5"]
+size = Vector2(32, 49)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2235o"]
+size = Vector2(31, 44)
+
+[node name="Part_5" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_bmd4e")
+
+[node name="Part5" type="Sprite2D" parent="."]
+position = Vector2(240, 180)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("1_d5mfr")
+
+[node name="crystal" parent="." instance=ExtResource("2_bmd4e")]
+position = Vector2(240, 180)
+
+[node name="Player" parent="." instance=ExtResource("3_l1tca")]
+position = Vector2(194, 227)
+current_ball = "dragon_ball_7"
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(0, 1)
+zoom = Vector2(4, 4)
+limit_left = 0
+limit_top = 0
+limit_right = 478
+limit_bottom = 358
+limit_smoothed = true
+rotation_smoothing_enabled = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_2235o")
+}
+
+[node name="Area2D" type="StaticBody2D" parent="."]
+z_index = 4
+y_sort_enabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
+position = Vector2(18, 211)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("4_kgv11")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Area2D"]
+position = Vector2(462, 180)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("5_8ut0q")
+offset = Vector2(0, 20.6667)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(462, 211)
+shape = SubResource("RectangleShape2D_bcfty")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(18, 211.5)
+shape = SubResource("RectangleShape2D_bcfty")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+visible = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(36, 148, 36, 132, 72, 132, 72, 108, 144, 108, 144, 132, 177, 132, 177, 109, 303, 109, 303, 132, 336, 132, 336, 109, 408, 109, 408, 132, 443, 132, 443, 145, 476, 145, 476, 167, 444, 167, 444, 312, 36, 312, 36, 168, 2, 168, 2, 148, 35, 148, 33, 126, 26, 113, -14, 101, -57, 243, -15, 351, 102, 374, 576, 367, 572, 96, 515, 7, 248, -49, -68, 49)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+visible = false
+z_index = 2
+navigation_polygon = SubResource("NavigationPolygon_l1tca")
+
+[node name="enemies" type="Node" parent="."]
+
+[node name="spawnable_enemy" parent="enemies" instance=ExtResource("8_kgv11")]
+position = Vector2(238, 137)
+detection_collision_radius = 80.0
+enemy_sprite = ExtResource("9_2235o")
+
+[node name="spawnable_enemy2" parent="enemies" instance=ExtResource("8_kgv11")]
+position = Vector2(394, 202)
+enemy_sprite = ExtResource("10_bcfty")
+
+[node name="spawnable_enemy3" parent="enemies" instance=ExtResource("8_kgv11")]
+position = Vector2(85, 200)
+enemy_sprite = ExtResource("11_52gjy")
+
+[node name="spawnable_enemy4" parent="enemies" instance=ExtResource("8_kgv11")]
+position = Vector2(398, 275)
+enemy_sprite = ExtResource("12_oyle3")
+
+[node name="spawnable_enemy5" parent="enemies" instance=ExtResource("8_kgv11")]
+position = Vector2(83, 267)
+enemy_sprite = ExtResource("13_5es5u")
+
+[node name="next_scene" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="next_scene"]
+z_index = 1
+position = Vector2(476, 154.5)
+shape = SubResource("RectangleShape2D_capa5")
+
+[node name="previous_scene" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="previous_scene"]
+z_index = 1
+position = Vector2(6.5, 160)
+shape = SubResource("RectangleShape2D_2235o")
+
+[node name="SpawnPoints" type="Node" parent="."]
+
+[node name="spawnpoint1" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(46, 162)
+
+[node name="spawnpoint2" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(434, 162)
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="body_entered" from="next_scene" to="." method="_on_next_scene_body_entered"]
+[connection signal="body_entered" from="previous_scene" to="." method="_on_previous_scene_body_entered"]

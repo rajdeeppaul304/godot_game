@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://dxjokaacmi8sa"]
+
+[ext_resource type="Script" uid="uid://cupneh8bws8lf" path="res://scripts/moving_board.gd" id="1_xg1je"]
+[ext_resource type="Texture2D" uid="uid://devjjvqbkqxmg" path="res://assets/characters/minigame_assets/broly_level/board.png" id="2_dk81x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8sslc"]
+size = Vector2(32, 32)
+
+[node name="MovingBoard" type="Node2D"]
+z_index = 2
+scale = Vector2(1.5, 1.5)
+script = ExtResource("1_xg1je")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_dk81x")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_8sslc")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

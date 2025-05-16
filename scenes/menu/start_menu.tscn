@@ -1,0 +1,44 @@
+[gd_scene load_steps=3 format=3 uid="uid://wpudu2x5o58o"]
+
+[ext_resource type="Texture2D" uid="uid://btltm7eaoplov" path="res://assets/characters/menu/background_Menu.png" id="1_idqd0"]
+[ext_resource type="Script" uid="uid://cxdxp0l3g3bba" path="res://scripts/menu/start_menu.gd" id="1_r0pvr"]
+
+[node name="StartMenu" type="Node2D"]
+script = ExtResource("1_r0pvr")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Panel"]
+self_modulate = Color(0.300903, 0.442613, 0.444456, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_idqd0")
+
+[node name="Button" type="Button" parent="CanvasLayer/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.0
+offset_top = -15.5
+offset_right = 48.0
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Start Game
+"
+
+[connection signal="pressed" from="CanvasLayer/Panel/Button" to="." method="_on_button_pressed"]

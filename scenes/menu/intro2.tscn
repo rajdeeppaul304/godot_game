@@ -1,0 +1,329 @@
+[gd_scene load_steps=21 format=3 uid="uid://fgusnfbr3f1t"]
+
+[ext_resource type="Texture2D" uid="uid://j1vehxvag8o5" path="res://assets/characters/menu/background_mountain.png" id="1_o8kov"]
+[ext_resource type="Script" uid="uid://cbiqd3ndwn3es" path="res://scripts/menu/intro.gd" id="1_s4v0x"]
+[ext_resource type="Texture2D" uid="uid://7cl32625bbgo" path="res://assets/characters/menu/scroll.png" id="1_u6bnj"]
+[ext_resource type="Texture2D" uid="uid://b4fl17v5m6exu" path="res://assets/characters/SimpleKeys/Classic/Dark/Single PNGs/PS4-sheet.png" id="2_o8kov"]
+[ext_resource type="Texture2D" uid="uid://dn58t0rg175uj" path="res://assets/characters/SimpleKeys/Classic/Dark/Spritesheets/R.png" id="3_s4v0x"]
+[ext_resource type="Texture2D" uid="uid://cijo3qhyji75w" path="res://assets/characters/SimpleKeys/Classic/Dark/Spritesheets/F.png" id="4_llq60"]
+[ext_resource type="Texture2D" uid="uid://b7omv0wr25b1x" path="res://assets/characters/SimpleKeys/Classic/Dark/Spritesheets/C.png" id="5_ktmn0"]
+[ext_resource type="Texture2D" uid="uid://cy2lplbway11h" path="res://assets/characters/SimpleKeys/Classic/Dark/Spritesheets/E.png" id="6_skd4l"]
+[ext_resource type="FontFile" uid="uid://bqdhxrsnpdf7g" path="res://assets/fonts/PixelOperator8.ttf" id="7_22khe"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rmfdh"]
+atlas = ExtResource("2_o8kov")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4mtn2"]
+atlas = ExtResource("2_o8kov")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tw1b7"]
+atlas = ExtResource("2_o8kov")
+region = Rect2(0, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vly7t"]
+atlas = ExtResource("2_o8kov")
+region = Rect2(0, 80, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_srdwq"]
+atlas = ExtResource("3_s4v0x")
+region = Rect2(0, 0, 17, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uy17r"]
+atlas = ExtResource("4_llq60")
+region = Rect2(0, 0, 17, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hkjlp"]
+atlas = ExtResource("5_ktmn0")
+region = Rect2(0, 0, 17, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_80r2f"]
+atlas = ExtResource("6_skd4l")
+region = Rect2(0, 0, 17, 16)
+
+[sub_resource type="Animation" id="Animation_tuc3j"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_8ubk7"]
+resource_name = "new"
+length = 2.6
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel2/TextureRect:texture:region")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.405202, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [Rect2(0, 32, 16, 16), Rect2(16, 32, 16, 16), Rect2(0, 32, 16, 16), Rect2(16, 32, 16, 16), Rect2(0, 32, 16, 16)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Panel2/TextureRect2:texture:region")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2, 2.2052, 2.4, 2.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [Rect2(0, 64, 16, 16), Rect2(16, 64, 16, 16), Rect2(0, 64, 16, 16), Rect2(16, 64, 16, 16), Rect2(0, 64, 16, 16)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Panel2/TextureRect3:texture:region")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.8, 1.0052, 1.2, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [Rect2(0, 80, 16, 16), Rect2(16, 80, 16, 16), Rect2(0, 80, 16, 16), Rect2(16, 80, 16, 16), Rect2(0, 80, 16, 16)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Panel2/TextureRect4:texture:region")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.4, 1.6, 1.8, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [Rect2(0, 48, 16, 16), Rect2(16, 48, 16, 16), Rect2(0, 48, 16, 16), Rect2(16, 48, 16, 16), Rect2(0, 48, 16, 16)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Panel/TextureRect:texture:region")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1.4, 1.6, 1.8, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [Rect2(0, 0, 17, 16), Rect2(17, 0, 17, 16), Rect2(0, 0, 17, 16), Rect2(17, 0, 17, 16), Rect2(0, 0, 17, 16)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Panel/TextureRect2:texture:region")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 2, 2.2, 2.4, 2.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [Rect2(0, 0, 17, 16), Rect2(17, 0, 17, 16), Rect2(0, 0, 17, 16), Rect2(17, 0, 17, 16), Rect2(0, 0, 17, 16)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Panel/TextureRect3:texture:region")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.8, 1, 1.2, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [Rect2(0, 0, 17, 16), Rect2(17, 0, 17, 16), Rect2(0, 0, 17, 16), Rect2(17, 0, 17, 16), Rect2(0, 0, 17, 16)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Panel/TextureRect4:texture:region")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [Rect2(0, 0, 17, 16), Rect2(17, 0, 17, 16), Rect2(0, 0, 17, 16), Rect2(17, 0, 17, 16), Rect2(0, 0, 17, 16)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vm1gc"]
+_data = {
+&"RESET": SubResource("Animation_tuc3j"),
+&"new": SubResource("Animation_8ubk7")
+}
+
+[node name="Intro" type="Node2D"]
+script = ExtResource("1_s4v0x")
+next_world = "Intro3"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="background" type="TextureRect" parent="CanvasLayer"]
+self_modulate = Color(0.301961, 0.443137, 0.443137, 1)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_o8kov")
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -85.0
+offset_top = -48.0
+offset_right = 85.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(10, 10)
+pivot_offset = Vector2(85, 48)
+texture = ExtResource("1_u6bnj")
+
+[node name="Panel2" type="Panel" parent="CanvasLayer"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = 208.0
+offset_top = 368.0
+offset_right = 328.0
+offset_bottom = 488.0
+scale = Vector2(3, 3)
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Panel2"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 5.33333
+offset_right = 48.0
+offset_bottom = 45.3333
+texture = SubResource("AtlasTexture_rmfdh")
+
+[node name="TextureRect4" type="TextureRect" parent="CanvasLayer/Panel2"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 69.3333
+offset_right = 48.0
+offset_bottom = 109.333
+texture = SubResource("AtlasTexture_4mtn2")
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/Panel2"]
+layout_mode = 0
+offset_left = 280.0
+offset_top = 69.3333
+offset_right = 320.0
+offset_bottom = 109.333
+texture = SubResource("AtlasTexture_tw1b7")
+
+[node name="TextureRect3" type="TextureRect" parent="CanvasLayer/Panel2"]
+layout_mode = 0
+offset_left = 280.0
+offset_top = 5.33333
+offset_right = 320.0
+offset_bottom = 45.3333
+texture = SubResource("AtlasTexture_vly7t")
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+self_modulate = Color(1, 1, 1, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 461.0
+offset_top = -40.0
+offset_right = 581.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(3, 3)
+pivot_offset = Vector2(60, 40)
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Panel"]
+layout_mode = 0
+offset_left = -308.333
+offset_top = 52.0
+offset_right = -268.333
+offset_bottom = 92.0
+texture = SubResource("AtlasTexture_srdwq")
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/Panel"]
+layout_mode = 0
+offset_left = -35.0
+offset_top = 52.0
+offset_right = 5.00001
+offset_bottom = 92.0
+texture = SubResource("AtlasTexture_uy17r")
+
+[node name="TextureRect3" type="TextureRect" parent="CanvasLayer/Panel"]
+layout_mode = 0
+offset_left = -35.0
+offset_top = -12.0
+offset_right = 5.0
+offset_bottom = 28.0
+texture = SubResource("AtlasTexture_hkjlp")
+
+[node name="TextureRect4" type="TextureRect" parent="CanvasLayer/Panel"]
+layout_mode = 0
+offset_left = -308.333
+offset_top = -12.0
+offset_right = -268.333
+offset_bottom = 28.0
+texture = SubResource("AtlasTexture_80r2f")
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_left = 536.0
+offset_top = 416.0
+offset_right = 620.0
+offset_bottom = 432.0
+scale = Vector2(2.7, 2.7)
+theme_override_colors/font_color = Color(0.247059, 0.168627, 0.145098, 1)
+theme_override_colors/font_shadow_color = Color(0.662745, 0.482353, 0.305882, 1)
+theme_override_fonts/font = ExtResource("7_22khe")
+text = "ATTACK"
+horizontal_alignment = 1
+
+[node name="Label4" type="Label" parent="CanvasLayer"]
+offset_left = 1352.0
+offset_top = 416.0
+offset_right = 1436.0
+offset_bottom = 432.0
+scale = Vector2(2.7, 2.7)
+theme_override_colors/font_color = Color(0.247059, 0.168627, 0.145098, 1)
+theme_override_colors/font_shadow_color = Color(0.662745, 0.482353, 0.305882, 1)
+theme_override_fonts/font = ExtResource("7_22khe")
+text = "SPRINT"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="CanvasLayer"]
+offset_left = 536.0
+offset_top = 608.0
+offset_right = 620.0
+offset_bottom = 624.0
+scale = Vector2(2.7, 2.7)
+theme_override_colors/font_color = Color(0.247059, 0.168627, 0.145098, 1)
+theme_override_colors/font_shadow_color = Color(0.662745, 0.482353, 0.305882, 1)
+theme_override_fonts/font = ExtResource("7_22khe")
+text = "RANGED"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="CanvasLayer"]
+offset_left = 1352.0
+offset_top = 608.0
+offset_right = 1436.0
+offset_bottom = 624.0
+scale = Vector2(2.7, 2.7)
+theme_override_colors/font_color = Color(0.247059, 0.168627, 0.145098, 1)
+theme_override_colors/font_shadow_color = Color(0.662745, 0.482353, 0.305882, 1)
+theme_override_fonts/font = ExtResource("7_22khe")
+text = "HEAL"
+horizontal_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer"]
+libraries = {
+&"": SubResource("AnimationLibrary_vm1gc")
+}
+autoplay = "new"

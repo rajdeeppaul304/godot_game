@@ -1,0 +1,147 @@
+[gd_scene load_steps=8 format=3 uid="uid://2uvkc7bqueie"]
+
+[ext_resource type="Script" uid="uid://ccd8kxcydnxk8" path="res://scripts/world_scripts/last_level/part_7.gd" id="1_d3wnm"]
+[ext_resource type="Texture2D" uid="uid://3c3a7ni483v6" path="res://assets/characters/minigame_assets/broly_level/part_7.png" id="1_odnbw"]
+[ext_resource type="Texture2D" uid="uid://cy7n2p37rhjhw" path="res://assets/characters/minigame_assets/broly_level/part_7_overlays/path.png" id="2_d3wnm"]
+[ext_resource type="PackedScene" uid="uid://bkvifke0t0v3q" path="res://scenes/enemy.tscn" id="3_5so8g"]
+[ext_resource type="PackedScene" uid="uid://ct2rfy2e8m43c" path="res://scenes/player.tscn" id="4_j622k"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_jwh8x"]
+vertices = PackedVector2Array(875, 180, 876, 248, 875.43, 247.961, 828.914, 239.641, 828, 180, 133, 554, 130, 517, 228, 516, 228, 553, 697, 239, 744, 239, 877, 277, 612, 276, 613, 241, 516, 277, 516, 204, 516.164, 204, 782, 552, 444, 553, 444, 480, 492, 481, 731.625, 480.172, 733, 414, 781, 415, 782, 480, 697, 138, 743, 138, 828, 108, 924, 108, 924, 180, 156, 326, 516, 326, 516, 398, 491, 398, 324, 480, 324, 553, 276, 480, 228, 480, 323.07, 398, 276, 398, 108, 398, 108, 333, 564, 204, 612, 204, 517, 179, 564, 108, 107, 108, 156, 180, 443, 398)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32Array(5, 6, 7, 8), PackedInt32Array(9, 10, 3, 2, 11, 12, 13), PackedInt32Array(12, 14, 15, 16, 13), PackedInt32Array(17, 18, 19, 20), PackedInt32Array(21, 22, 23, 24, 17), PackedInt32Array(9, 25, 26, 10), PackedInt32Array(4, 27, 28, 0), PackedInt32Array(28, 29, 0), PackedInt32Array(30, 31, 32, 33), PackedInt32Array(34, 35, 8, 7, 36), PackedInt32Array(7, 37, 36), PackedInt32Array(38, 34, 36, 39), PackedInt32Array(39, 40, 41, 30), PackedInt32Array(42, 43, 13), PackedInt32Array(42, 13, 16, 44), PackedInt32Array(45, 42, 44), PackedInt32Array(46, 45, 44, 47), PackedInt32Array(41, 46, 47, 30), PackedInt32Array(20, 21, 17), PackedInt32Array(33, 20, 19, 48), PackedInt32Array(30, 33, 48), PackedInt32Array(30, 48, 38), PackedInt32Array(39, 30, 38)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(107, 108, 564, 108, 564, 212, 516, 209, 517, 179, 156, 180, 156, 333, 108, 333), PackedVector2Array(516, 204, 612, 204, 613, 241, 697, 239, 697, 138, 743, 138, 744, 239, 875, 240, 877, 277, 612, 276, 516, 277), PackedVector2Array(828, 108, 924, 108, 924, 180, 875, 180, 876, 248, 829, 245, 828, 180), PackedVector2Array(108, 326, 516, 326, 516, 398, 108, 398), PackedVector2Array(228, 480, 276, 480, 276, 391, 323, 392, 324, 480, 324, 553, 228, 553, 133, 554, 130, 517, 228, 516), PackedVector2Array(782, 480, 781, 415, 733, 414, 731.623, 480.174, 492, 481, 491, 398, 443, 398, 444, 480, 444, 553, 782, 552)])
+source_geometry_mode = 2
+source_geometry_group_name = &"navigation"
+agent_radius = 0.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d3wnm"]
+size = Vector2(76, 93)
+
+[node name="part_7" type="Node2D"]
+script = ExtResource("1_d3wnm")
+
+[node name="Part7" type="Sprite2D" parent="."]
+position = Vector2(480, 300)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("1_odnbw")
+
+[node name="path_revealed" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(480, 300)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_d3wnm")
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+visible = false
+z_index = 2
+navigation_polygon = SubResource("NavigationPolygon_jwh8x")
+
+[node name="Area2D" type="Area2D" parent="." groups=["navigation"]]
+modulate = Color(0.231377, 0.82, 0.2214, 1)
+position = Vector2(116, 598)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+position = Vector2(-122, -608)
+polygon = PackedVector2Array(108, 119, 42, 118, 42, 544, 84, 544, 84, 520, 227, 520, 227, 486, 227, 486, 275, 486, 275, 415, 109, 414)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Area2D"]
+position = Vector2(-115, -588)
+polygon = PackedVector2Array(917, 308, 916, 177, 884, 177, 883, 275, 504, 275, 503, 179, 163, 179, 164, 307)
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PackedVector2Array(671, -194, 802, -194, 802, -52, 672, -52)
+
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PackedVector2Array(383, -194, 609, -193, 608, -125, 384, -125)
+
+[node name="CollisionPolygon2D5" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PackedVector2Array(214, -194, 322, -194, 322, -51, 214, -51)
+
+[node name="CollisionPolygon2D6" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PackedVector2Array(453, -485, 573, -485, 575, -363, 503, -363, 503, -400, 455, -401)
+
+[node name="CollisionPolygon2D7" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PackedVector2Array(635, -484, 705, -483, 704, -366, 634, -365)
+
+[node name="to_remove" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PackedVector2Array(658, -295, 656, -192, 705, -193, 707, -160, 612, -162, 612, -295)
+
+[node name="to_remove2" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PackedVector2Array(-28, -46, -28, -64, -46, -64, -47, -81, -6, -82, -6, -46)
+
+[node name="next_scene" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="next_scene"]
+position = Vector2(723, 52.5)
+shape = SubResource("RectangleShape2D_d3wnm")
+
+[node name="previous_scene" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="previous_scene"]
+position = Vector2(-10, 542.5)
+shape = SubResource("RectangleShape2D_d3wnm")
+
+[node name="previous_scene_2" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="previous_scene_2"]
+position = Vector2(981.5, 355.5)
+shape = SubResource("RectangleShape2D_d3wnm")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(105, 107, 564, 107, 695, 107, 696, 50, 744, 49, 743, 108, 923, 108, 924, 312, 957, 312, 957, 395, 924, 395, 924, 552, 238, 552, 2, 553, 2, 528, 36, 528, 36, 106, 104, 106, 99, 63, 0, 65, -16, 315, -44, 636, 1023, 607, 998, 237, 965, 60, 645, -11, 173, 4, 79, 53)
+
+[node name="SpawnPoints" type="Node" parent="."]
+
+[node name="spawnpoint1" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(60, 548)
+
+[node name="spawnpoint2" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(921, 364)
+
+[node name="spawnpoint3" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(719, 132)
+
+[node name="Enemy" parent="." instance=ExtResource("3_5so8g")]
+position = Vector2(252, 143)
+
+[node name="Enemy2" parent="." instance=ExtResource("3_5so8g")]
+position = Vector2(399, 142)
+
+[node name="Enemy3" parent="." instance=ExtResource("3_5so8g")]
+position = Vector2(564, 241)
+
+[node name="Enemy4" parent="." instance=ExtResource("3_5so8g")]
+position = Vector2(874, 147)
+
+[node name="Enemy5" parent="." instance=ExtResource("3_5so8g")]
+position = Vector2(694, 519)
+
+[node name="Enemy6" parent="." instance=ExtResource("3_5so8g")]
+position = Vector2(537, 516)
+
+[node name="Enemy7" parent="." instance=ExtResource("3_5so8g")]
+position = Vector2(277, 515)
+
+[node name="Enemy8" parent="." instance=ExtResource("3_5so8g")]
+position = Vector2(157, 364)
+
+[node name="Player" parent="." instance=ExtResource("4_j622k")]
+position = Vector2(919, 365)
+current_ball = "dragon_ball_7"
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(0, 1)
+zoom = Vector2(4, 4)
+limit_left = 0
+limit_top = 0
+limit_right = 960
+limit_bottom = 600
+limit_smoothed = true
+rotation_smoothing_enabled = true
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="next_scene" to="." method="_on_next_scene_body_entered"]
+[connection signal="body_entered" from="previous_scene" to="." method="_on_previous_scene_body_entered"]
+[connection signal="body_entered" from="previous_scene_2" to="." method="_on_previous_scene_2_body_entered"]

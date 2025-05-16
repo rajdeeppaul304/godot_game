@@ -1,0 +1,90 @@
+[gd_scene load_steps=6 format=3 uid="uid://cndr8i5biis40"]
+
+[ext_resource type="Texture2D" uid="uid://cp6rwli5smedc" path="res://assets/characters/minigame_assets/broly_level/part_6.png" id="1_4jhai"]
+[ext_resource type="Script" uid="uid://2wgpu8j50an1" path="res://scripts/world_scripts/last_level/part_6.gd" id="1_hohxv"]
+[ext_resource type="PackedScene" uid="uid://ct2rfy2e8m43c" path="res://scenes/player.tscn" id="2_y5dc2"]
+[ext_resource type="PackedScene" uid="uid://cbl8qp3q56px5" path="res://scenes/world_scenes/last_level/crystal.tscn" id="4_6if76"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hohxv"]
+size = Vector2(26, 39)
+
+[node name="part_6" type="Node2D"]
+script = ExtResource("1_hohxv")
+
+[node name="Part6" type="Sprite2D" parent="."]
+position = Vector2(240, 780)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("1_4jhai")
+
+[node name="Player" parent="." instance=ExtResource("2_y5dc2")]
+position = Vector2(65, 143)
+current_ball = "dragon_ball_7"
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(0, 1)
+zoom = Vector2(4, 4)
+limit_left = 0
+limit_top = 0
+limit_right = 480
+limit_bottom = 1560
+limit_smoothed = true
+rotation_smoothing_enabled = true
+
+[node name="SpawnPoints" type="Node" parent="."]
+
+[node name="spawnpoint1" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(43, 163)
+
+[node name="spawnpoint2" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(45, 944)
+
+[node name="spawnpoint3" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(46, 1362)
+
+[node name="crystal" parent="." instance=ExtResource("4_6if76")]
+position = Vector2(414, 138)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PackedVector2Array(39, 1267, 148, 1267, 149, 1439, 222, 1439, 224, 1077, 330, 1077, 334, 338, 222, 338, 224, 177, 255, 177, 256, 300, 376, 300, 377, 1166, 255, 1166, 255, 1429, 375, 1429, 375, 1465, 110, 1467, 108, 1310, 39, 1309)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PackedVector2Array(333, 111, 373, 111, 375, 216, 334, 216)
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PackedVector2Array(335, 1248, 443, 1248, 443, 1287, 373, 1288, 372, 1349, 336, 1349)
+
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PackedVector2Array(39, 732, 144, 732, 144, 1190, 108, 1190, 107, 770, 39, 770)
+
+[node name="CollisionPolygon2D5" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PackedVector2Array(107, 108, 144, 108, 144, 422, 254, 421, 255, 998, 228, 998, 227, 469, 145, 469, 144, 649, 107, 649)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(2, 145, 35, 145, 36, 108, 444, 107, 444, 1512, 36, 1512, 36, 1368, 3, 1368, 3, 1344, 36, 1344, 36, 948, 3, 948, 3, 924, 36, 924, 36, 168, 3, 168, 2, 148, -1, 122, -10, 162, -78, 682, -69, 1516, 405, 1655, 660, 1623, 600, 706, 566, -47, -69, 5)
+
+[node name="next_scene" type="Area2D" parent="."]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="next_scene"]
+position = Vector2(9, 940)
+shape = SubResource("RectangleShape2D_hohxv")
+
+[node name="previous_scene" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="previous_scene"]
+position = Vector2(10, 158.5)
+shape = SubResource("RectangleShape2D_hohxv")
+
+[node name="previous_scene_2" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="previous_scene_2"]
+position = Vector2(11, 1360)
+shape = SubResource("RectangleShape2D_hohxv")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="next_scene" to="." method="_on_next_scene_body_entered"]
+[connection signal="body_entered" from="previous_scene" to="." method="_on_previous_scene_body_entered"]
+[connection signal="body_entered" from="previous_scene_2" to="." method="_on_previous_scene_2_body_entered"]

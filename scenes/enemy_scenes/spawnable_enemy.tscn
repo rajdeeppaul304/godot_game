@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://clvs677cd2g8j"]
+
+[ext_resource type="Script" uid="uid://dlfpv2giy2m22" path="res://scripts/enemy/spawnable_enemy.gd" id="1_2b2sw"]
+
+[node name="spawnable_enemy" type="Marker2D"]
+script = ExtResource("1_2b2sw")

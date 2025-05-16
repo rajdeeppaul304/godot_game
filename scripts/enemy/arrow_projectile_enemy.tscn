@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://dnabnp1lmxxs6"]
+
+[ext_resource type="Texture2D" uid="uid://cwd5padawxsk4" path="res://assets/characters/minigame_assets/broly_level/part_3_overlays/arrow.png" id="1_etby3"]
+[ext_resource type="Script" uid="uid://bvyh47mjocrkm" path="res://scripts/enemy/arrow_projectile_enemy.gd" id="1_vdnbh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jjr3j"]
+size = Vector2(50, 8)
+
+[node name="arrow_projectile_enemy" type="Node2D"]
+z_index = 5
+script = ExtResource("1_vdnbh")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_etby3")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_jjr3j")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

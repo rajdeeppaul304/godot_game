@@ -1,0 +1,85 @@
+[gd_scene load_steps=11 format=3 uid="uid://d2b0drk50jn8w"]
+
+[ext_resource type="Script" uid="uid://cp81vam7ha14s" path="res://scripts/world_scripts/sliding_puzzle_level.gd" id="1_5lttc"]
+[ext_resource type="Texture2D" uid="uid://bhday0it7e858" path="res://assets/characters/minigame_assets/world_background/sliding_puzzle_bg.png" id="1_htwa0"]
+[ext_resource type="Texture2D" uid="uid://dowqsqu1k0ndq" path="res://assets/characters/minigame_assets/sliding_puzzle/bridge.png" id="2_ulfki"]
+[ext_resource type="Shader" uid="uid://l45xnwu1bdy8" path="res://shaders/sliding_puzzle_level.gdshader" id="3_pouie"]
+[ext_resource type="PackedScene" uid="uid://ct2rfy2e8m43c" path="res://scenes/player.tscn" id="3_yvku1"]
+[ext_resource type="PackedScene" uid="uid://c8noe0a63dcjg" path="res://scenes/Interaction/signpost.tscn" id="6_qpcdt"]
+[ext_resource type="PackedScene" uid="uid://xslnt22jiinw" path="res://scenes/minigames/sliding_game_board.tscn" id="7_5lttc"]
+[ext_resource type="PackedScene" uid="uid://cpys8x3bau4p7" path="res://scenes/item.tscn" id="8_pouie"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5f0pq"]
+shader = ExtResource("3_pouie")
+shader_parameter/wipe_progress = 0.0
+shader_parameter/steps = 15
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y0o8b"]
+size = Vector2(107, 10)
+
+[node name="sliding_puzzle_level" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_5lttc")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-2, -2)
+texture = ExtResource("1_htwa0")
+centered = false
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_5f0pq")
+position = Vector2(196, 220)
+texture = ExtResource("2_ulfki")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2(39, 0)
+polygon = PackedVector2Array(454, 367, 436, 367, 422, 372, 401, 366, 373, 366, 357, 372, 342, 366, 319, 385, 294, 395, 270, 389, 241, 394, 213, 390, 191, 397, 167, 390, 142, 392, 120, 368, 110, 359, 128, 338, 125, 321, 126, 287, 111, 257, 144, 257, 144, 180, 103, 179, 98, 162, 103, 128, 102, 116, 109, 116, 122, 129, 160, 133, 185, 132, 212, 107, 225, 101, 216, 131, 224, 138, 215, 149, 207, 166, 212, 180, 170, 180, 170, 257, 211, 257, 208, 272, 229, 279, 219, 306, 246, 332, 295, 331, 315, 348, 328, 346, 349, 323, 454, 324, 454, 367, 468, 359, 473, 313, 232, 81, 77, 86, 77, 387, 145, 446, 486, 421, 473, 353)
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2(157, 253)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(41, -7)
+shape = SubResource("RectangleShape2D_y0o8b")
+
+[node name="Player" parent="." instance=ExtResource("3_yvku1")]
+position = Vector2(241, 356)
+current_ball = "dragon_ball_4"
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(0, 7)
+zoom = Vector2(4, 4)
+limit_left = 0
+limit_top = 0
+limit_right = 491
+limit_bottom = 445
+limit_smoothed = true
+rotation_smoothing_enabled = true
+
+[node name="Signpost" parent="." instance=ExtResource("6_qpcdt")]
+position = Vector2(234, 316)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Signpost"]
+
+[node name="Panel" type="Panel" parent="Signpost/CanvasLayer"]
+custom_minimum_size = Vector2(500, 500)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -250.0
+offset_right = 250.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="sliding_game_board" parent="Signpost/CanvasLayer/Panel" instance=ExtResource("7_5lttc")]
+layout_mode = 1
+
+[node name="Item" parent="." instance=ExtResource("8_pouie")]
+position = Vector2(197, 152)
+item_name = "dragon_ball_4"
