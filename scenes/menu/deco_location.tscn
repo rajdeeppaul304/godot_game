@@ -1,0 +1,41 @@
+[gd_scene load_steps=2 format=3 uid="uid://cka66xmxb5ijc"]
+
+[ext_resource type="Script" uid="uid://ke4ja7l4ltp1" path="res://deco_location.gd" id="1_14s5f"]
+
+[node name="Deco Location" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_14s5f")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(3.5, 3.5)
+pivot_offset = Vector2(960, 540)
+
+[node name="GridContainer" type="GridContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="CenterContainer/GridContainer"]
+layout_mode = 2
+text = "Get Deco's Location"
+
+[node name="Button2" type="Button" parent="CenterContainer/GridContainer"]
+layout_mode = 2
+text = "Get Deco's weakness"
+
+[node name="Button3" type="Button" parent="CenterContainer/GridContainer"]
+layout_mode = 2
+text = "Nay"
+
+[connection signal="pressed" from="CenterContainer/GridContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="CenterContainer/GridContainer/Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="CenterContainer/GridContainer/Button3" to="." method="_on_button_3_pressed"]

@@ -2,9 +2,12 @@ extends EnemyState
 
 const SPEED = 44
 var direction
+@onready var timer_to_attack_2: Timer = $Timer
 
 func enter(previous_state_path: String, data := {}):
 	self_enemy.player_chase = true
+	if self_enemy.is_broly:
+		timer_to_attack_2.start()
 	makepath()
 	pass
 	
@@ -61,3 +64,8 @@ func _on_enemy_hitbox_body_entered(body: Node2D) -> void:
 
 func _on_timer_to_navigate_timeout() -> void:
 	makepath()
+
+
+func _on_timer_timeout() -> void:
+	if direction and self_enemy.is_broly and Manager.player_is_alive:
+		finished.emit("Attack2", {"direction":direction.normalized()})

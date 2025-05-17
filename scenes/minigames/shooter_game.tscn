@@ -1,10 +1,11 @@
-[gd_scene load_steps=27 format=3 uid="uid://dxma7l4t21dj1"]
+[gd_scene load_steps=28 format=3 uid="uid://dxma7l4t21dj1"]
 
 [ext_resource type="Script" uid="uid://c0bdgvltfdrh3" path="res://scripts/minigames/shooter_game.gd" id="1_2x04a"]
 [ext_resource type="PackedScene" uid="uid://ct2rfy2e8m43c" path="res://scenes/player.tscn" id="1_dxd3o"]
 [ext_resource type="Texture2D" uid="uid://brl0ys5nyp7s1" path="res://assets/characters/standoff.png" id="2_gnbsd"]
 [ext_resource type="Texture2D" uid="uid://bv6cy8s0i517n" path="res://assets/characters/standoff_overlay.png" id="3_gnbsd"]
-[ext_resource type="PackedScene" uid="uid://b21xsfx3sncvg" path="res://scenes/enemy_scenes/big_enemy_trex.tscn" id="5_ya4yk"]
+[ext_resource type="PackedScene" uid="uid://bkvifke0t0v3q" path="res://scenes/enemy.tscn" id="3_ut7et"]
+[ext_resource type="Texture2D" uid="uid://bwa7rbkh5uc7q" path="res://assets/Enemies/final_sprites/t_rex.png" id="4_glhxn"]
 [ext_resource type="Texture2D" uid="uid://b4fl17v5m6exu" path="res://assets/characters/SimpleKeys/Classic/Dark/Single PNGs/PS4-sheet.png" id="6_5smko"]
 [ext_resource type="FontFile" uid="uid://b24jiltnt8nej" path="res://assets/characters/MedodicaRegular.otf" id="6_n47jq"]
 [ext_resource type="Texture2D" uid="uid://dn58t0rg175uj" path="res://assets/characters/SimpleKeys/Classic/Dark/Spritesheets/R.png" id="6_wbmfh"]
@@ -292,9 +293,10 @@ script = ExtResource("1_2x04a")
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(422, 78)
 
-[node name="Enemy" parent="." instance=ExtResource("5_ya4yk")]
-position = Vector2(542, 69)
-health = 1000
+[node name="Enemy" parent="." instance=ExtResource("3_ut7et")]
+position = Vector2(593, 80)
+enemy_sprite = ExtResource("4_glhxn")
+health = 500.0
 
 [node name="Player" parent="." instance=ExtResource("1_dxd3o")]
 position = Vector2(181, 76)

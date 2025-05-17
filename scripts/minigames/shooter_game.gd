@@ -102,6 +102,7 @@ func _physics_process(delta: float) -> void:
 	
 	
 func _ready():
+	$Enemy.health_bar2.visible = false
 	panel_with_keys.visible = false
 	input_timer = Timer.new()
 	input_timer.wait_time = INPUT_TIME

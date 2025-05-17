@@ -7,6 +7,9 @@ const ITEM = preload("res://scenes/item.tscn")
 signal enemy_died
 
 func enter(previous_state_path: String, data := {}):
+	if self_enemy.is_broly:
+		broly_func()
+		return
 	drop_items()
 	sprite_2d.visible = false
 	self_enemy.modulate = Color(death_particles_Modulate)
@@ -16,19 +19,20 @@ func enter(previous_state_path: String, data := {}):
 	self_enemy.death_particles_small.emitting = true
 	particles_on_timer.start()
 	self_enemy.is_dead = true
+	
+	
 
+func broly_func():
+	death_particles_Modulate = Color(1,1,1,1)
+	animation_player.play("death")
+	self_enemy.is_dead = true
+	player.anim.play("front_idle")
+	player.is_movement_paused = true
+		
 func physics_update(_delta: float) -> void:
 	self_enemy.modulate = Color(death_particles_Modulate)
 
-#func drop_items():
-	#var item = ITEM.instantiate()
-#
-#
-	#item.global_position = self_enemy.global_position
-	#self_enemy.get_parent().add_child(item)
-	#var temp_vel = ((player.global_position - self_enemy.global_position)).normalized() * 100
-	#item.velocity = temp_vel.rotated(randf_range(-1.5, 1.5)) * randf_range(0.9, 1.5)
-	#
+
 func drop_items():
 	var drop_count = randi_range(0, 5)
 	print("Drop count: ", drop_count)
@@ -58,3 +62,9 @@ func _on_particles_on_timer_timeout() -> void:
 	#drop_items()
 	enemy_died.emit()
 	self_enemy.queue_free()
+
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	if "death" in anim_name:
+		enemy_died.emit()
+		self_enemy.queue_free()

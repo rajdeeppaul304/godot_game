@@ -6,7 +6,6 @@ var self_enemy
 var animation_player
 var sprite_2d
 var player
-
 ## Emitted when the state finishes and wants to transition to another state.
 signal finished(next_state_path: String, data: Dictionary)
 

@@ -23,13 +23,14 @@ var scenes := {
 	"last_level_part_8": preload( "res://scenes/world_scenes/last_level/part_8.tscn"),
 	"last_level_part_9": preload( "res://scenes/world_scenes/last_level/part_9.tscn"),
 	"last_level_part_10": preload("res://scenes/world_scenes/last_level/part_10.tscn"),
+	"last_level_part_11": preload("res://scenes/world3.tscn"),
+	"winner_screen": preload("res://scenes/world_scenes/winner_screen.tscn"),
 
 
 
 
 	"World1": preload("res://scenes/world.tscn"),
 	"World2": preload("res://scenes/World2.tscn"),
-	"World3": preload("res://scenes/world3.tscn"),
 }
 
 

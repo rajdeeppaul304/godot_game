@@ -50,6 +50,7 @@ func physics_update(_delta: float) -> void:
 			#run_back_to_origial_posi()
 			play_directional_anim(angle, "hit")
 	else:
+		direction = player.position - self_enemy.position
 		finished.emit("AfterHit", {"direction":direction.normalized()})
 		#if self_enemy.player_chase == true:
 			#finished.emit("PlayerChase", {"direction":direction.normalized()})

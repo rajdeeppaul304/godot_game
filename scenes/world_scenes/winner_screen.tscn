@@ -1,0 +1,137 @@
+[gd_scene load_steps=13 format=3 uid="uid://cyv2v644kmcct"]
+
+[ext_resource type="Script" uid="uid://d0vii0l5ns4d4" path="res://scripts/world_scripts/winner_screen.gd" id="1_pynio"]
+[ext_resource type="VideoStream" uid="uid://doexb1d10ypvh" path="res://assets/characters/shenron/shenron_talking.ogv" id="2_ufg1a"]
+[ext_resource type="Texture2D" uid="uid://dtbf7qc6d44mj" path="res://assets/characters/menu/background.jpg" id="3_dagcr"]
+[ext_resource type="PackedScene" uid="uid://cka66xmxb5ijc" path="res://scenes/menu/deco_location.tscn" id="3_l5nx1"]
+[ext_resource type="Texture2D" uid="uid://djv8qqbpqywss" path="res://assets/characters/shenron/body_1.png" id="4_ufg1a"]
+[ext_resource type="Texture2D" uid="uid://bni00egvqct62" path="res://assets/characters/shenron/body_4.png" id="5_l5nx1"]
+[ext_resource type="Texture2D" uid="uid://lvtw6kxahrw0" path="res://assets/characters/shenron/body_3.png" id="6_uvqmt"]
+[ext_resource type="Texture2D" uid="uid://v1ul4tq4c0ud" path="res://assets/characters/shenron/head.png" id="7_gwric"]
+
+[sub_resource type="Animation" id="Animation_dagcr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_nobi1"]
+resource_name = "fade_in"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.96667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_l5nx1"]
+resource_name = "loop"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.966667, 2),
+"transitions": PackedFloat32Array(-2, -2, -2),
+"update": 0,
+"values": [Color(0, 0, 0, 0.746), Color(0.234, 0, 0.021, 0.613), Color(0, 0, 0, 0.746)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_t3qnd"]
+_data = {
+&"RESET": SubResource("Animation_dagcr"),
+&"fade_in": SubResource("Animation_nobi1"),
+&"loop": SubResource("Animation_l5nx1")
+}
+
+[node name="winner_screen" type="Node2D"]
+script = ExtResource("1_pynio")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="CanvasLayer"]
+offset_right = 1920.0
+offset_bottom = 1080.0
+audio_track = 1
+stream = ExtResource("2_ufg1a")
+volume_db = 24.0
+autoplay = true
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0)
+
+[node name="Deco Location" parent="CanvasLayer" instance=ExtResource("3_l5nx1")]
+visible = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_t3qnd")
+}
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Sprite" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(960, 537)
+texture = ExtResource("3_dagcr")
+
+[node name="ParallaxLayer5" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.8, 0.8)
+
+[node name="Sprite" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer5"]
+position = Vector2(941, 554)
+scale = Vector2(0.85, 0.85)
+texture = ExtResource("4_ufg1a")
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.2, 0.2)
+
+[node name="Sprite" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3"]
+position = Vector2(941, 554)
+scale = Vector2(0.85, 0.85)
+texture = ExtResource("5_l5nx1")
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.4, 0.4)
+
+[node name="Sprite" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer4"]
+position = Vector2(941, 554)
+scale = Vector2(0.85, 0.85)
+texture = ExtResource("6_uvqmt")
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.6, 0.6)
+
+[node name="Sprite" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
+position = Vector2(941, 554)
+scale = Vector2(0.85, 0.85)
+texture = ExtResource("7_gwric")
+
+[connection signal="finished" from="CanvasLayer/VideoStreamPlayer" to="." method="_on_video_stream_player_finished"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

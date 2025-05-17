@@ -1,8 +1,13 @@
-[gd_scene load_steps=27 format=3 uid="uid://b21xsfx3sncvg"]
+[gd_scene load_steps=38 format=3 uid="uid://b21xsfx3sncvg"]
 
-[ext_resource type="PackedScene" uid="uid://bkvifke0t0v3q" path="res://scenes/enemy.tscn" id="1_bv8sf"]
-[ext_resource type="Texture2D" uid="uid://dl1v5f4u31hvi" path="res://assets/Enemies/final_sprites/broly.png" id="2_5iep4"]
-[ext_resource type="Script" uid="uid://rcrsd3iyf64w" path="res://scripts/enemy/attack_2.gd" id="3_1ejsu"]
+[ext_resource type="PackedScene" uid="uid://bkvifke0t0v3q" path="res://scenes/enemy.tscn" id="1_y0wqc"]
+[ext_resource type="Texture2D" uid="uid://dl1v5f4u31hvi" path="res://assets/Enemies/final_sprites/broly.png" id="2_pevxr"]
+[ext_resource type="Shader" uid="uid://xwqpwlpbdtw7" path="res://shaders/broly_aoe.gdshader" id="3_v65v0"]
+[ext_resource type="Texture2D" uid="uid://5ddcmvy7xb4x" path="res://assets/characters/broly_attack_2_aoe.png" id="4_8adc3"]
+[ext_resource type="Script" uid="uid://bdq5hx0rmy8ib" path="res://scripts/enemy/coming_out.gd" id="5_p7iy1"]
+[ext_resource type="Script" uid="uid://rcrsd3iyf64w" path="res://scripts/enemy/attack_2.gd" id="6_3n77u"]
+[ext_resource type="PackedScene" uid="uid://s5fulatclkpt" path="res://scenes/HealthBar/HealthBar.tscn" id="7_kl1gv"]
+[ext_resource type="FontFile" uid="uid://btspnwqnyrotg" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="8_weejf"]
 
 [sub_resource type="Animation" id="Animation_5iep4"]
 length = 0.001
@@ -17,6 +22,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [Vector2i(1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.1, 1.1)]
 }
 
 [sub_resource type="Animation" id="Animation_1ejsu"]
@@ -53,6 +70,23 @@ tracks/0/keys = {
 "values": [Vector2i(10, 2), Vector2i(11, 2), Vector2i(12, 2), Vector2i(13, 2)]
 }
 
+[sub_resource type="Animation" id="Animation_onk2n"]
+resource_name = "back_attack_2"
+length = 0.6
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(-2, 1, 1, 1, 1, -2),
+"update": 1,
+"values": [Vector2i(14, 2), Vector2i(15, 2), Vector2i(15, 2), Vector2i(16, 2), Vector2i(16, 2), Vector2i(17, 2)]
+}
+
 [sub_resource type="Animation" id="Animation_qetj3"]
 resource_name = "back_hit"
 length = 0.2
@@ -67,7 +101,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [Vector2i(11, 2), Vector2i(12, 2)]
+"values": [Vector2i(6, 2), Vector2i(7, 2)]
 }
 
 [sub_resource type="Animation" id="Animation_klf6m"]
@@ -104,6 +138,52 @@ tracks/0/keys = {
 "values": [Vector2i(2, 2), Vector2i(3, 2), Vector2i(4, 2), Vector2i(5, 2)]
 }
 
+[sub_resource type="Animation" id="Animation_pacjm"]
+resource_name = "coming_out"
+length = 1.8
+step = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9, 1.2, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(18, 0), Vector2i(19, 0), Vector2i(20, 0), Vector2i(21, 0), Vector2i(22, 0), Vector2i(23, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_jvwmd"]
+resource_name = "death"
+length = 1.8
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(18, 1), Vector2i(19, 1), Vector2i(20, 1), Vector2i(21, 1), Vector2i(22, 1), Vector2i(21, 1), Vector2i(22, 1), Vector2i(23, 1), Vector2i(23, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.2, 1.2), Vector2(1.3, 1.3), Vector2(1.4, 1.4)]
+}
+
 [sub_resource type="Animation" id="Animation_xlqj3"]
 resource_name = "front_aggro"
 length = 0.2
@@ -138,6 +218,23 @@ tracks/0/keys = {
 "values": [Vector2i(10, 0), Vector2i(11, 0), Vector2i(12, 0), Vector2i(13, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_mh36p"]
+resource_name = "front_attack_2"
+length = 0.6
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(-2, 1, 1, 1, 1, -2),
+"update": 1,
+"values": [Vector2i(14, 0), Vector2i(15, 0), Vector2i(15, 0), Vector2i(16, 0), Vector2i(16, 0), Vector2i(17, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_al3u8"]
 resource_name = "front_hit"
 length = 0.2
@@ -152,7 +249,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [Vector2i(11, 0), Vector2i(12, 0)]
+"values": [Vector2i(6, 0), Vector2i(7, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_svym6"]
@@ -223,6 +320,23 @@ tracks/0/keys = {
 "values": [Vector2i(10, 1), Vector2i(11, 1), Vector2i(12, 1), Vector2i(13, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_bygxl"]
+resource_name = "side_attack_2"
+length = 0.6
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(-2, 1, 1, 1, 1, -2),
+"update": 1,
+"values": [Vector2i(14, 1), Vector2i(15, 1), Vector2i(15, 1), Vector2i(16, 1), Vector2i(16, 1), Vector2i(17, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_4qjrk"]
 resource_name = "side_hit"
 length = 0.2
@@ -237,7 +351,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [Vector2i(11, 1), Vector2i(12, 1)]
+"values": [Vector2i(6, 1), Vector2i(7, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_nm4dy"]
@@ -274,43 +388,35 @@ tracks/0/keys = {
 "values": [Vector2i(2, 1), Vector2i(3, 1), Vector2i(4, 1), Vector2i(5, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_bygxl"]
-resource_name = "front_attack_2"
-length = 0.6
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame_coords")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
-"transitions": PackedFloat32Array(-2, -2, -2, -2, -2, -2),
-"update": 1,
-"values": [Vector2i(14, 0), Vector2i(15, 0), Vector2i(15, 0), Vector2i(16, 0), Vector2i(16, 0), Vector2i(17, 0)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bygxl"]
 _data = {
 &"RESET": SubResource("Animation_5iep4"),
 &"back_aggro": SubResource("Animation_1ejsu"),
 &"back_attack": SubResource("Animation_o3wfb"),
+&"back_attack_2": SubResource("Animation_onk2n"),
 &"back_hit": SubResource("Animation_qetj3"),
 &"back_idle": SubResource("Animation_klf6m"),
 &"back_walk": SubResource("Animation_pgntg"),
+&"coming_out": SubResource("Animation_pacjm"),
+&"death": SubResource("Animation_jvwmd"),
 &"front_aggro": SubResource("Animation_xlqj3"),
 &"front_attack": SubResource("Animation_80man"),
-&"front_attack_2": SubResource("Animation_bygxl"),
+&"front_attack_2": SubResource("Animation_mh36p"),
 &"front_hit": SubResource("Animation_al3u8"),
 &"front_idle": SubResource("Animation_svym6"),
 &"front_walk": SubResource("Animation_ihb4b"),
 &"side_aggro": SubResource("Animation_ervb4"),
 &"side_attack": SubResource("Animation_e2lbh"),
+&"side_attack_2": SubResource("Animation_bygxl"),
 &"side_hit": SubResource("Animation_4qjrk"),
 &"side_idle": SubResource("Animation_nm4dy"),
 &"side_walk": SubResource("Animation_k7b30")
 }
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_klf6m"]
+shader = ExtResource("3_v65v0")
+shader_parameter/reveal_radius = 0.25
+shader_parameter/center_uv = Vector2(0.5, 0.5)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_klf6m"]
 radius = 81.0247
@@ -322,14 +428,15 @@ height = 22.3513
 [sub_resource type="CircleShape2D" id="CircleShape2D_1ejsu"]
 radius = 33.0151
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_pgntg"]
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_o3wfb"]
 radius = 32.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qetj3"]
 radius = 15.1327
 
-[node name="Enemy" instance=ExtResource("1_bv8sf")]
-health = 100
+[node name="Enemy" instance=ExtResource("1_y0wqc")]
 metadata/_edit_vertical_guides_ = [-119.0]
 
 [node name="AnimationPlayer" parent="." index="0"]
@@ -339,32 +446,51 @@ libraries = {
 }
 
 [node name="Sprite2D" parent="." index="1"]
-texture = ExtResource("2_5iep4")
+scale = Vector2(1.1, 1.1)
+texture = ExtResource("2_pevxr")
 hframes = 24
+
+[node name="aoe" type="Sprite2D" parent="." index="2"]
+visible = false
+z_index = -1
+material = SubResource("ShaderMaterial_klf6m")
+position = Vector2(0, 4)
+texture = ExtResource("4_8adc3")
 
 [node name="CollisionShape2D" parent="DetectionArea" index="0"]
 shape = SubResource("CircleShape2D_klf6m")
 
-[node name="CollisionShape2D" parent="." index="3"]
+[node name="CollisionShape2D" parent="." index="4"]
+visible = false
 position = Vector2(0, 11)
 rotation = 1.55879
 scale = Vector2(1.70108, 1.70108)
 shape = SubResource("CapsuleShape2D_5iep4")
 
-[node name="MyHurtBox" parent="." index="4"]
+[node name="MyHurtBox" parent="." index="5"]
+visible = false
 position = Vector2(-1, 1)
 
 [node name="CollisionShape2D" parent="MyHurtBox" index="0"]
 position = Vector2(0, -1)
 shape = SubResource("CircleShape2D_1ejsu")
 
-[node name="Enemy_hitbox" parent="." index="5"]
+[node name="variable_enemy_hitbox" type="Area2D" parent="." index="6"]
+position = Vector2(-1, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="variable_enemy_hitbox" index="0"]
+shape = SubResource("CircleShape2D_pgntg")
+
+[node name="Enemy_hitbox" parent="." index="7"]
 visible = false
 position = Vector2(-1, 0)
 
 [node name="CollisionShape2D" parent="Enemy_hitbox" index="0"]
 position = Vector2(0, 0)
 shape = SubResource("CircleShape2D_o3wfb")
+
+[node name="projectile_detector" parent="." index="8"]
+visible = false
 
 [node name="CollisionShape2D" parent="projectile_detector" index="0"]
 scale = Vector2(2.01228, 2.01228)
@@ -385,16 +511,65 @@ lifetime = 0.6
 initial_velocity_min = 40.0
 initial_velocity_max = 60.0
 
-[node name="Attack2" type="Node" parent="EnemyStateMachine" index="3"]
-script = ExtResource("3_1ejsu")
+[node name="EnemyStateMachine" parent="." index="10" node_paths=PackedStringArray("initial_state")]
+initial_state = NodePath("coming_out")
+
+[node name="coming_out" type="Node" parent="EnemyStateMachine" index="1"]
+script = ExtResource("5_p7iy1")
+
+[node name="Timer" type="Timer" parent="EnemyStateMachine/PlayerChase" index="1"]
+wait_time = 5.0
+
+[node name="Attack2" type="Node" parent="EnemyStateMachine" index="4"]
+script = ExtResource("6_3n77u")
 metadata/_custom_type_script = "uid://bd7l2jnoe5pt4"
 
 [node name="enemy_attack_timer" type="Timer" parent="EnemyStateMachine/Attack2" index="0"]
 wait_time = 5.0
 one_shot = true
 
-[node name="Label" parent="." index="9"]
+[node name="Label" parent="." index="11"]
 offset_top = -56.0
 offset_bottom = -33.0
 
+[node name="CanvasLayer" type="CanvasLayer" parent="." index="13"]
+
+[node name="Panel" type="Panel" parent="CanvasLayer" index="0"]
+visible = false
+self_modulate = Color(1, 1, 1, 0)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -336.0
+offset_top = -140.0
+offset_right = -296.0
+offset_bottom = -99.9999
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(3, 3)
+
+[node name="HealthBar" parent="CanvasLayer/Panel" index="0" instance=ExtResource("7_kl1gv")]
+layout_mode = 0
+offset_top = -3.0
+offset_bottom = 3.0
+
+[node name="Label" type="Label" parent="CanvasLayer/Panel" index="1"]
+layout_mode = 0
+offset_left = 76.0
+offset_top = 8.0
+offset_right = 152.0
+offset_bottom = 31.0
+theme_override_fonts/font = ExtResource("8_weejf")
+text = "Broly"
+
+[node name="HealthBar" parent="." index="14"]
+visible = false
+
+[connection signal="animation_finished" from="AnimationPlayer" to="EnemyStateMachine/Death" method="_on_animation_player_animation_finished"]
+[connection signal="animation_finished" from="AnimationPlayer" to="EnemyStateMachine/coming_out" method="_on_animation_player_animation_finished"]
+[connection signal="animation_finished" from="AnimationPlayer" to="EnemyStateMachine/Attack2" method="_on_animation_player_animation_finished"]
+[connection signal="body_entered" from="variable_enemy_hitbox" to="EnemyStateMachine/Attack2" method="_on_variable_enemy_hitbox_body_entered"]
+[connection signal="timeout" from="EnemyStateMachine/PlayerChase/Timer" to="EnemyStateMachine/PlayerChase" method="_on_timer_timeout"]
 [connection signal="timeout" from="EnemyStateMachine/Attack2/enemy_attack_timer" to="." method="_on_enemy_attack_timer_timeout"]

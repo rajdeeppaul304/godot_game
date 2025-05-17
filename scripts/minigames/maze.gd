@@ -5,8 +5,8 @@ signal request_scene_change(world_name: String, spawn_point: String, is_speaking
 @onready var timer: Timer = $Timer
 
 func next_scene():
-	#request_scene_change.emit("memory_matching_puzzle_2", "SpawnPoint1", true, "res://dialogues/test_dialogue_1.dialogue")  # Or whatever scene you want
-	request_scene_change.emit("last_level_part_5", "spawnpoint1", true, "res://dialogues/test_dialogue_1.dialogue")  # Or whatever scene you want
+	request_scene_change.emit("memory_matching_puzzle_2", "SpawnPoint1", true, "res://dialogues/test_dialogue_1.dialogue")  # Or whatever scene you want
+	#request_scene_change.emit("last_level_part_10", "spawnpoint1", true, "res://dialogues/test_dialogue_1.dialogue")  # Or whatever scene you want
 
 
 func _ready() -> void:
